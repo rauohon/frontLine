@@ -31,7 +31,7 @@ public class UserController {
 	
 	@GetMapping(value = "qksqhr.do")
 	public ModelAndView qksqhr (FnlMap fnlMap) throws Exception {
-		log.info(">>>>>>>>>>반복문");
+		log.info(">>>>>>>>>>반복문ABC");
 		mav=userService.entrance(3, fnlMap);
 		return mav;
 	}
