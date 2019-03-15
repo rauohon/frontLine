@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user.cmmn">
+
+	<!--														-->
+	<!-- 업무내용 : 회원 가입									-->
+	<!--														-->
+	<select id="idCheck" parameterType="fnlMap" resultType="Integer">
+		/* SQL_id = user.cmmn.idCheck */
+		SELECT COUNT(*)
+		  FROM FNL1001
+		 WHERE MB_ID = #{mbId}
+	</select>
+	
+</mapper>

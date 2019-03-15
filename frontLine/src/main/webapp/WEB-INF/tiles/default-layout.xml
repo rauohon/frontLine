@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+
+	<definition name="layouts-tiles" template="/WEB-INF/jsp/template/default-layouts.jsp">
+	  	<put-attribute name="header"    	value="/WEB-INF/jsp/template/default-header.jsp" />
+	  	<put-attribute name="nav"    		value="/WEB-INF/jsp/template/default-nav.jsp" />
+	  	<put-attribute name="left"    		value="/WEB-INF/jsp/template/default-left.jsp" />
+	  	<put-attribute name="content"   	value="" />
+	  	<put-attribute name="footer"    	value="/WEB-INF/jsp/template/default-footer.jsp" />
+	</definition>
+	
+	<definition name="*/*.tiles" extends="layouts-tiles">
+	  	<put-attribute name="content"   value="/WEB-INF/jsp/{1}/{2}.jsp" />
+	</definition>
+	
+	<definition name="layouts-lgon_signUp-tiles" template="/WEB-INF/jsp/template/lgon_signUp-layouts.jsp">
+		<put-attribute name="title" 		expression="${title}" />
+	  	<put-attribute name="header"    	value="/WEB-INF/jsp/template/default-header.jsp" />
+	  	<put-attribute name="content"   	value="" />
+	  	<put-attribute name="footer"    	value="/WEB-INF/jsp/template/default-footer.jsp" />
+	</definition>
+	
+	<definition name="*/*.lgon_signUp" extends="layouts-lgon_signUp-tiles">
+	  	<put-attribute name="content"   value="/WEB-INF/jsp/{1}/{2}.jsp" />
+	</definition>
+	
+</tiles-definitions>

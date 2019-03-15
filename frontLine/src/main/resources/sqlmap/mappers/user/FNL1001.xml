@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user.FNL1001">
+
+	<!--														-->
+	<!-- 업무내용 : 회원 가입									-->
+	<!--														-->
+	<select id="getMbIdno" parameterType="fnlMap" resultType="String">
+		/* SQL_id = user.FNL1001.getMbIdno */
+		SELECT 'MB'||LPAD(FNL01_SEQ_01.NEXTVAL,13,0) FROM DUAL
+	</select>
+	
+	<!--														-->
+	<!-- 업무내용 : 회원 가입									-->
+	<!--														-->
+	<insert id="signUp" parameterType="fnlMap">
+		/* SQL_id = user.FNL1001.signUp */
+		INSERT INTO FNL1001
+		(
+			  MB_IDNO
+			, MB_ID
+			, MB_PWD
+			, MB_CODE
+			, MB_REG_DATE
+			, MB_CHNG_MBID
+			, MB_CHNG_DATE
+		)
+		VALUES
+		(
+			  #{mbIdno}
+		    , #{mbId}
+		    , #{mbPwd}
+		    , 'REG'
+		    , SYSDATE
+		    , #{mbIdno}
+		    , SYSDATE
+		)
+	</insert>
+	
+	<!--														-->
+	<!-- 업무내용 : 로그인										-->
+	<!--														-->
+	<select id="lgonCheck" parameterType="fnlMap" resultType="Integer">
+		/* SQL_id = user.FNL1001.lgonCheck */
+		SELECT COUNT(*)
+		  FROM FNL1001
+		 WHERE MB_ID = #{mbId}
+           AND MB_PWD = #{mbPwd}
+	</select>
+	
+	<!--														-->
+	<!-- 업무내용 : 로그인										-->
+	<!--														-->
+	<select id="qksqhr" parameterType="fnlMap" resultType="fnlMap">
+		/* SQL_ID = user.FNL1001.qksqhr */
+		SELECT 
+		<foreach collection="qksqhrList" item="i" separator="," index="index">
+			(SELECT MB_ID FROM FNL1001) AS ABCD_${index}
+		</foreach>
+		     FROM FNL1001
+	</select>
+	
+</mapper>
