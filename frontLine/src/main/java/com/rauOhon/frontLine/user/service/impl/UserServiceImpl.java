@@ -1,6 +1,5 @@
 package com.rauOhon.frontLine.user.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rauOhon.frontLine.cmmn.dao.CmmnDao;
+import com.rauOhon.frontLine.cmmn.utils.Encryption;
 import com.rauOhon.frontLine.cmmn.utils.FnlMap;
 import com.rauOhon.frontLine.cmmn.utils.SessionManager;
 import com.rauOhon.frontLine.user.service.UserService;
@@ -32,8 +32,12 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private CmmnDao cmmnDao;
+	
 	@Autowired
 	private SessionManager session;
+	
+	@Autowired
+	private Encryption encrtption;
 	
 	Logger log = LoggerFactory.getLogger(this.getClass());
 	
@@ -58,7 +62,7 @@ public class UserServiceImpl implements UserService{
 				break;
 			
 			case 3 :
-				mav = qksqhr(fnlMap);
+
 				break;
 				
 			default :
@@ -66,22 +70,6 @@ public class UserServiceImpl implements UserService{
 				break;
 		}
 		
-		return mav;
-	}
-
-	private ModelAndView qksqhr(FnlMap fnlMap) {
-		log.debug(">>>>>>>>>>>>>>>>>>>>qksqhr > service");
-		String pageName = "cmmn/home.tiles";
-		mav.setViewName(pageName);
-		ArrayList <String> qksqhrList = new ArrayList<String>();
-		qksqhrList.add("abcd");
-		qksqhrList.add("ㄱㄴㄷㄹ");
-		qksqhrList.add("zyxw");
-		qksqhrList.add("ㅎㅍㅌㅊ");
-		
-		fnlMap.put("qksqhrList", qksqhrList);
-		
-		cmmnDao.select("user.FNL1001.qksqhr", fnlMap.getMap());
 		return mav;
 	}
 
@@ -94,7 +82,7 @@ public class UserServiceImpl implements UserService{
 	 */
 	private ModelAndView signUp (FnlMap fnlMap) throws Exception {
 		log.debug(">>>>>>>>>>>>>>>>>>>>signUp > service");
-		String pageName = "user/lgon";
+		String pageName = "user/lgon.lgon_signUp";
 		
 		if (idCheck(fnlMap)) {
 			pageName = "user/signUp";
@@ -102,6 +90,12 @@ public class UserServiceImpl implements UserService{
 		} else {
 			String mbIdno = getMbIdno(fnlMap);
 			fnlMap.put("mbIdno", mbIdno);
+			
+			String mbPwd = encrtption.encode(fnlMap.getString("mbPwd"));
+			
+			fnlMap.put("mbPass", mbPwd);
+			
+			fnlMap.loggigMap();
 			
 			cmmnDao.insert("user.FNL1001.signUp", fnlMap.getMap());
 		}
@@ -129,13 +123,21 @@ public class UserServiceImpl implements UserService{
 		
 		if (!idCheck(fnlMap)) {
 			pageName = "user/lgon.lgon_signUp";
-			mav.addObject("errorDetail", "일치하는 아이디가 없어요.");
+			mav.addObject("errorDetail", "로그인에 실패했습니다. 아이디와 비밀번호를 확인해 주세요.");
 		} else {
 			if (!lgonCheck(fnlMap)) {
 				pageName = "user/lgon.lgon_signUp";
-				mav.addObject("errorDetail", "비밀번호가 이상해요.");
+				cmmnDao.update("user.FNL1001.updateMbErrCnt", fnlMap.getMap());
+				mav.addObject("errorDetail", "로그인에 실패했습니다. 아이디와 비밀번호를 확인해 주세요.");
 			} else { // 로그인 성공
-				session.setAttribute("sessionId", fnlMap.get("mbIdno"));
+				FnlMap sesseionMap = cmmnDao.selectOneRow("user.FNL1001.getMbInfo", fnlMap.getMap());
+				session.setAttribute("sessionId", sesseionMap.getMap());
+				int mbErrCnt = sesseionMap.getInt("mbErrCnt");
+				if (mbErrCnt > 5) {
+					pageName = "user/lgon.lgon_signUp";
+					mav.addObject("errorDetail", "로그인 실패 횟수가 초과 되었습니다. 관리자에게 문의 바랍니다.");
+				}
+				
 			}
 		}
 		mav.setViewName(pageName);
@@ -179,8 +181,10 @@ public class UserServiceImpl implements UserService{
 	 * @return	: 일치 - ture, 불일치 - false
 	 */
 	private boolean lgonCheck (FnlMap fnlMap) throws Exception {
-		int flag = cmmnDao.selectByCnt("user.FNL1001.lgonCheck", fnlMap.getMap());
-		return intToBoolean(flag);
+		String mbPwd = fnlMap.getString("mbPwd");
+		String encPwd = cmmnDao.selectByPk("user.FNL1001.getPwd", fnlMap.getMap());
+		boolean flag = encrtption.matches(mbPwd, encPwd);
+		return flag;
 	}
 	
 	// 0 - false, 1 - true

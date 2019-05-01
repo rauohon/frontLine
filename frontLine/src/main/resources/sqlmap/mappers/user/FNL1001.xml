@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user.FNL1001">
 
 	<!--														-->
@@ -29,7 +30,7 @@
 		(
 			  #{mbIdno}
 		    , #{mbId}
-		    , #{mbPwd}
+		    , #{mbPass}
 		    , 'REG'
 		    , SYSDATE
 		    , #{mbIdno}
@@ -38,26 +39,41 @@
 	</insert>
 	
 	<!--														-->
-	<!-- 업무내용 : 로그인										-->
+	<!-- 업무내용 : 로그인(비밀번호 조회)						-->
 	<!--														-->
-	<select id="lgonCheck" parameterType="fnlMap" resultType="Integer">
-		/* SQL_id = user.FNL1001.lgonCheck */
-		SELECT COUNT(*)
+	<select id="getPwd" parameterType="fnlMap" resultType="String">
+		/* SQL_id = user.FNL1001.getPwd */
+		SELECT MB_PWD
 		  FROM FNL1001
 		 WHERE MB_ID = #{mbId}
-           AND MB_PWD = #{mbPwd}
 	</select>
 	
 	<!--														-->
-	<!-- 업무내용 : 로그인										-->
+	<!-- 업무내용 : 세션 저장 정보 조회							-->
 	<!--														-->
-	<select id="qksqhr" parameterType="fnlMap" resultType="fnlMap">
-		/* SQL_ID = user.FNL1001.qksqhr */
-		SELECT 
-		<foreach collection="qksqhrList" item="i" separator="," index="index">
-			(SELECT MB_ID FROM FNL1001) AS ABCD_${index}
-		</foreach>
-		     FROM FNL1001
+	<select id="getMbInfo" parameterType="fnlMap" resultType="hashmap">
+		/* SQL_id = user.FNL1001.getMbInfo */
+		SELECT MB_IDNO
+			 , MB_CODE
+			 , MB_DEL_YN
+			 , MB_CHNG_MBID
+			 , MB_ID
+			 , MB_CHNG_DATE
+			 , MB_REG_DATE
+			 , MB_ERR_CNT
+		  FROM FNL1001
+		 WHERE MB_ID = #{mbId}
+	
 	</select>
+	
+	<!--														-->
+	<!-- 업무내용 : 세션 저장 정보 조회							-->
+	<!--														-->
+	<update id="updateMbErrCnt" parameterType="fnlMap" >
+		/* SQL_id = user.FNL1001.updateMbErrCnt */
+		UPDATE FNL1001
+		   SET MB_ERR_CNT = MB_ERR_CNT + 1
+		 WHERE MB_ID = #{mbId}
+	</update>
 	
 </mapper>

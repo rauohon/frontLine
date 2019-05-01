@@ -22,7 +22,7 @@ public class UserController {
 	
 	private ModelAndView mav = new ModelAndView();
 	
-	@PostMapping(value = "lgout.do")
+	@PostMapping(value = "/user/lgout.do")
 	public ModelAndView lgout (FnlMap fnlMap) throws Exception {
 		log.info(">>>>>>>>>>lgon > controller");
 		mav=userService.entrance(2, fnlMap);

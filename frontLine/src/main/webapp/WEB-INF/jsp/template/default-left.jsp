@@ -107,11 +107,6 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 							<span>Game Play</span>
 						</a>
 					</li>
-					<li onClick="javascript:header.pageSubmitFn('qksqhr')">
-						<a>
-							<span>ㅁ누ㅏ</span>
-						</a>
-					</li>
 					<li class="nav-parent">
 						<a>
 							<i class="fa fa-th-list"></i>

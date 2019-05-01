@@ -75,10 +75,13 @@ public class MybatisLogInterceptor implements Interceptor{
 				if (value == null) {
 					continue;
 				}
-		
+				
+				if ("mbPass".equals(propValue)) {
+					value = "";
+				}
 
 				if (value instanceof String) {
-					sql = sql.replaceFirst("\\?", "‘" + value + "‘");
+					sql = sql.replaceFirst("\\?", "'" + value + "'");
 				} else {
 					sql = sql.replaceFirst("\\?", value.toString());
 				}
@@ -96,7 +99,7 @@ public class MybatisLogInterceptor implements Interceptor{
 				field.setAccessible(true);
 				Class<?> javaType = mapping.getJavaType();
 				if (String.class == javaType) {
-					sql = sql.replaceFirst("\\?", "‘" + field.get(value) + "‘");
+					sql = sql.replaceFirst("\\?", "‘" + field.get(param) + "‘");
 				} else {
 					sql = sql.replaceFirst("\\?", field.get(param).toString());
 				}

@@ -26,10 +26,10 @@ public class HomeController {
 	private ModelAndView mav = new ModelAndView();
 	
 	@GetMapping(value = "/main.do")
-	public ModelAndView home() throws Exception {
+	public String home() throws Exception {
 		log.info("Welcome home!");
 		mav.setViewName("cmmn/home.tiles");
-		return mav;
+		return "cmmn/home.tiles";
 	}
 
 	@GetMapping(value = "/signUpPage.do")

@@ -29,12 +29,32 @@ public class FnlMap {
 		
 		return resultObject;
 	}
-	
 
     public Object get (Object key) {
         return map.get(key);
     }
-     
+    
+    public String getString (Object key) {
+    	Object objResult = get(key);
+    	String result = "";
+    	if (objResult != null) {
+    		result = objResult.toString();
+    	}
+    	return result;
+    }
+    
+    public int getInt (Object key) {
+    	String objResult = getString(key);
+    	int result = -1;
+    	try{
+    		result = Integer.parseInt(objResult) ;
+        }catch(Exception e){
+        	
+        }
+    	return result;
+    }
+    
+    
     public boolean isEmpty () {
         return map.isEmpty();
     }
@@ -42,7 +62,7 @@ public class FnlMap {
     public Map<Object, Object> getMap (){
         return map;
     }
-     
+    
     public void clear () {
         map.clear();
     }

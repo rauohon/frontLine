@@ -15,7 +15,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, 
 			HttpServletResponse response, 
 			Object handler) throws Exception {
-		log.info(">>>>>>>>>>>>>>>>>>>>SessionInterceptor : ", request.getRequestURL());
+		log.info(">>>>>>>>>>>>>>>>>>>>SessionInterceptor : {}", request.getRequestURL());
 		try {
 			if (request.getSession().getAttribute("sessionId") == null) {
 				response.sendRedirect("main.do");

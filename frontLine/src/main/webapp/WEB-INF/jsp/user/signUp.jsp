@@ -12,12 +12,12 @@
 
 <title>Quirk Responsive Admin Templates</title>
 
-<link rel="stylesheet" href="lib/fontawesome/css/font-awesome.css">
-<link rel="stylesheet" href="lib/select2/select2.css">
+<link rel="stylesheet" href="/resources/lib/fontawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/resources/lib/select2/select2.css">
 
-<link rel="stylesheet" href="css/quirk.css">
+<link rel="stylesheet" href="/resources/css/quirk.css">
 
-<script src="lib/modernizr/modernizr.js"></script>
+<script src="/resources/lib/modernizr/modernizr.js"></script>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
   <script src="../lib/html5shiv/html5shiv.js"></script>
@@ -50,7 +50,7 @@
 							<div class="form-group mb15">
 								<input type="password" name="mbPwd" class="form-control" placeholder="비밀번호" required="required">
 							</div>
-							<div class="error"></div>
+							<div class="error">${errorDetail}</div>
 							<div class="form-group">
 								<button class="btn btn-success btn-quirk btn-block">
 									가입하기
@@ -104,10 +104,10 @@
 
 
 
-	<script src="lib/jquery/jquery.js"></script>
-	<script src="lib/bootstrap/js/bootstrap.js"></script>
-	<script src="lib/select2/select2.js"></script>
-	<script src="lib/jquery-validate/jquery.validate.js"></script>
+	<script src="/resources/lib/jquery/jquery.js"></script>
+	<script src="/resources/lib/bootstrap/js/bootstrap.js"></script>
+	<script src="/resources/lib/select2/select2.js"></script>
+	<script src="/resources/lib/jquery-validate/jquery.validate.js"></script>
 	<script>
 	$(document).ready(function() {
 		$('#valid').validate({

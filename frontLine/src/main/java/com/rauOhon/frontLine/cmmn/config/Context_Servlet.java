@@ -86,7 +86,7 @@ public class Context_Servlet extends WebMvcConfigurerAdapter{
     	super.addArgumentResolvers(argumentResolvers);
     	argumentResolvers.add(new ParamCollectorArgumentResolver());
     }
-    /*
+    
     @Override
     public void addInterceptors (InterceptorRegistry registry) {
     	log.info(">>>>>>>>>>addInterceptors");
@@ -94,5 +94,5 @@ public class Context_Servlet extends WebMvcConfigurerAdapter{
     		.addPathPatterns("/**")
     		.excludePathPatterns("/public/**");
     }
-    */
+    
 }

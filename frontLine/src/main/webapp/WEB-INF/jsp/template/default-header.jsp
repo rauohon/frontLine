@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<% String cPath=request.getContextPath(); %>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="description" content="">
@@ -8,16 +7,16 @@
 
 <title>Web style RPG</title>
 
-<link rel="stylesheet" href="<%=cPath %>/resources/lib/Hover/hover.css">
-<link rel="stylesheet" href="<%=cPath %>/resources/lib/fontawesome/css/font-awesome.css">
-<link rel="stylesheet" href="<%=cPath %>/resources/lib/weather-icons/css/weather-icons.css">
-<link rel="stylesheet" href="<%=cPath %>/resources/lib/ionicons/css/ionicons.css">
-<link rel="stylesheet" href="<%=cPath %>/resources/lib/jquery-toggles/toggles-full.css">
-<link rel="stylesheet" href="<%=cPath %>/resources/lib/morrisjs/morris.css">
+<link rel="stylesheet" href="/resources/lib/Hover/hover.css">
+<link rel="stylesheet" href="/resources/lib/fontawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/resources/lib/weather-icons/css/weather-icons.css">
+<link rel="stylesheet" href="/resources/lib/ionicons/css/ionicons.css">
+<link rel="stylesheet" href="/resources/lib/jquery-toggles/toggles-full.css">
+<link rel="stylesheet" href="/resources/lib/morrisjs/morris.css">
 
-<link rel="stylesheet" type="text/css" href="<%=cPath %>/resources/css/quirk.css">
+<link rel="stylesheet" type="text/css" href="/resources/css/quirk.css">
 
-<script src="<%=cPath %>/resources/lib/modernizr/modernizr.js"></script>
+<script src="/resources/lib/modernizr/modernizr.js"></script>
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -33,15 +32,15 @@
 			console.log($("#frm").attr("action"));
 			
 			if (pageName == "main") {
-				$("#frm").attr("action", "public/main.do");
+				$("#frm").attr("action", "/public/main.do");
 			} else if (pageName == "signInPage") {
-				$("#frm").attr("action", "lgonPage.do");
+				$("#frm").attr("action", "/public/lgonPage.do");
 			} else if (pageName == "signIn") {
-				$("#frm").attr("action", "signIn.do");
+				$("#frm").attr("action", "/public/signIn.do");
 			} else if (pageName == "signUpPage") {
-				$("#frm").attr("action", "signUpPage.do");
+				$("#frm").attr("action", "/public/signUpPage.do");
 			} else if (pageName == "lgout") {
-				$("#frm").attr("action", "lgout.do");
+				$("#frm").attr("action", "/user/lgout.do");
 				$("#frm").attr("method", "post");
 			} else if (pageName == "gameHome") {
 				$("#frm").attr("action", "gameHome.do");
