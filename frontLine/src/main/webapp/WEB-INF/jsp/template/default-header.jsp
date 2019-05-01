@@ -17,6 +17,8 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/quirk.css">
 
 <script src="/resources/lib/modernizr/modernizr.js"></script>
+<script type="text/javascript" src="/resources/js/cmmn/cmmn_util.js"></script>
+<script type="text/javascript" src="/resources/js/cmmn/transaction.js"></script>
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
