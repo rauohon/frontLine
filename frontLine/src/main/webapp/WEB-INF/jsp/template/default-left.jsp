@@ -7,7 +7,7 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 		<div id="mb-Profile" class="media leftpanel-profile" style="display: none">
 			<div class="media-left">
 				<a href="#"> 
-					<img src="images/photos/loggeduser.png" alt="" class="media-object img-circle">
+					<img src="/resources/images/photos/loggeduser.png" alt="" class="media-object img-circle">
 				</a>
 			</div>
 			<div class="media-body">
@@ -172,7 +172,7 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 					<li class="media"><a href="#">
 							<div class="media-left">
 								<img class="media-object img-circle"
-									src="images/photos/user1.png" alt="">
+									src="/resources/images/photos/user1.png" alt="">
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Christina R. Hill</h4>
@@ -182,7 +182,7 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 					<li class="media"><a href="#">
 							<div class="media-left">
 								<img class="media-object img-circle"
-									src="images/photos/user2.png" alt="">
+									src="/resources/images/photos/user2.png" alt="">
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Floyd M. Romero</h4>
@@ -192,7 +192,7 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 					<li class="media"><a href="#">
 							<div class="media-left">
 								<img class="media-object img-circle"
-									src="images/photos/user3.png" alt="">
+									src="/resources/images/photos/user3.png" alt="">
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Jennie S. Gray</h4>
@@ -202,7 +202,7 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 					<li class="media"><a href="#">
 							<div class="media-left">
 								<img class="media-object img-circle"
-									src="images/photos/user4.png" alt="">
+									src="/resources/images/photos/user4.png" alt="">
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Alia J. Locher</h4>
@@ -212,7 +212,7 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 					<li class="media"><a href="#">
 							<div class="media-left">
 								<img class="media-object img-circle"
-									src="images/photos/user5.png" alt="">
+									src="/resources/images/photos/user5.png" alt="">
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Nicholas T. Hinkle</h4>
@@ -222,7 +222,7 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 					<li class="media"><a href="#">
 							<div class="media-left">
 								<img class="media-object img-circle"
-									src="images/photos/user6.png" alt="">
+									src="/resources/images/photos/user6.png" alt="">
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Jamie W. Bradford</h4>
@@ -232,7 +232,7 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 					<li class="media"><a href="#">
 							<div class="media-left">
 								<img class="media-object img-circle"
-									src="images/photos/user7.png" alt="">
+									src="/resources/images/photos/user7.png" alt="">
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Pamela J. Stump</h4>
@@ -242,7 +242,7 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 					<li class="media"><a href="#">
 							<div class="media-left">
 								<img class="media-object img-circle"
-									src="images/photos/user8.png" alt="">
+									src="/resources/images/photos/user8.png" alt="">
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Refugio C. Burgess</h4>
@@ -252,7 +252,7 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 					<li class="media"><a href="#">
 							<div class="media-left">
 								<img class="media-object img-circle"
-									src="images/photos/user9.png" alt="">
+									src="/resources/images/photos/user9.png" alt="">
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Ashley T. Brewington</h4>
@@ -262,7 +262,7 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 					<li class="media"><a href="#">
 							<div class="media-left">
 								<img class="media-object img-circle"
-									src="images/photos/user10.png" alt="">
+									src="/resources/images/photos/user10.png" alt="">
 							</div>
 							<div class="media-body">
 								<h4 class="media-heading">Roberta F. Horn</h4>

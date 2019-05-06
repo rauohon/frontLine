@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmmn.FNL1006">
+
+	<!--														-->
+	<!-- 업무내용 : 세션 저장 정보 조회							-->
+	<!--														-->
+	<select id="selectCmmnCd" parameterType="fnlMap" resultType="hashmap">
+		/* SQL_id = cmmn.FNL1006.selectCmmnCd */
+		SELECT CD_BIG_CODE
+		     , CD_CODE
+		     , CD_NAME
+		  FROM FNL1006
+		 WHERE CD_DEL_YN = 'N'
+		   AND CD_BIG_CODE = #{cdBigCode}
+	</select>
+
+</mapper>

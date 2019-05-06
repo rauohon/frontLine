@@ -17,8 +17,11 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/quirk.css">
 
 <script src="/resources/lib/modernizr/modernizr.js"></script>
+<script src="/resources/lib/jquery/jquery.js"></script>
 <script type="text/javascript" src="/resources/js/cmmn/cmmn_util.js"></script>
+<script type="text/javascript" src="/resources/js/cmmn/popup.js"></script>
 <script type="text/javascript" src="/resources/js/cmmn/transaction.js"></script>
+
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -45,7 +48,7 @@
 				$("#frm").attr("action", "/user/lgout.do");
 				$("#frm").attr("method", "post");
 			} else if (pageName == "gameHome") {
-				$("#frm").attr("action", "gameHome.do");
+				$("#frm").attr("action", "/game/gameHome.do");
 				$("#gameHome").addClass('active');
 				$("#frm").attr("method", "post");
 			} else if (pageName == "qksqhr") {

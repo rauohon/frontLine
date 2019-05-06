@@ -1,9 +1,11 @@
 package com.rauOhon.frontLine.cmmn.utils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -97,5 +99,38 @@ public class FnlMap {
     	log.debug(sb.toString());
 		log.debug("| =============================================== |");
     }
-
+    
+    public List<HashMap<Object, Object>> getSetList (List<FnlMap> list) {
+    	List<HashMap<Object, Object>> resultList = new ArrayList<HashMap<Object, Object>>();
+    	
+    	if (list == null || list.size() == 0) {
+    		return null;
+    	}
+    	
+    	Iterator<FnlMap> listIter = list.iterator();
+    	
+    	while (listIter.hasNext()) {
+    		resultList.add(getSetMap(listIter.next()));
+    	}
+    	
+    	return resultList;
+    }
+    
+    public HashMap<Object, Object> getSetMap (FnlMap fnlMap) {
+    	HashMap<Object, Object> resultHashMap = new HashMap<Object, Object>(); 
+    	
+    	if (fnlMap == null) {
+    		return null;
+    	}
+    	
+    	Iterator<Object> mapIter = fnlMap.getMap().keySet().iterator();
+    	
+    	while (mapIter.hasNext()) {
+    		String key = mapIter.next().toString();
+    		resultHashMap.put(key, fnlMap.get(key));
+    	}
+    	
+    	return resultHashMap;
+    }
+    
 }

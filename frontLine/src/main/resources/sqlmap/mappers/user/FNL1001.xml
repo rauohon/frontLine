@@ -63,7 +63,6 @@
 			 , MB_ERR_CNT
 		  FROM FNL1001
 		 WHERE MB_ID = #{mbId}
-	
 	</select>
 	
 	<!--														-->

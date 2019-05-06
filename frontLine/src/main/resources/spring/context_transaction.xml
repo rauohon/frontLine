@@ -13,6 +13,8 @@
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
 			<tx:method name="select*" read-only="true"/>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="save*" propagation="REQUIRED" rollback-for="Exception"/>
 			<tx:method name="insert*" propagation="REQUIRED" rollback-for="Exception"/>
 			<tx:method name="update*" propagation="REQUIRED" rollback-for="Exception"/>
 			<tx:method name="delete*" propagation="REQUIRED" rollback-for="Exception"/>

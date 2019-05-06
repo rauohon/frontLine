@@ -60,4 +60,5 @@ public class SessionManager {
     public String getSessionId() throws Exception  {
         return RequestContextHolder.getRequestAttributes().getSessionId();
     }
+    
 }

@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
-<script src="/resources/lib/jquery/jquery.js"></script>
 <script src="/resources/lib/jquery-ui/jquery-ui.js"></script>
 <script src="/resources/lib/bootstrap/js/bootstrap.js"></script>
 <script src="/resources/lib/jquery-toggles/toggles.js"></script>

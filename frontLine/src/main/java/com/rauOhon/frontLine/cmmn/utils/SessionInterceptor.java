@@ -18,7 +18,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 		log.info(">>>>>>>>>>>>>>>>>>>>SessionInterceptor : {}", request.getRequestURL());
 		try {
 			if (request.getSession().getAttribute("sessionId") == null) {
-				response.sendRedirect("main.do");
+				response.sendRedirect("/public/lgonPage.do");
 				return false;
 			}
 		} catch (Exception e) {

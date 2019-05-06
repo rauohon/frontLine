@@ -11,11 +11,11 @@
 
 <title>Quirk Responsive Admin Templates</title>
 
-<link rel="stylesheet" href="lib/fontawesome/css/font-awesome.css">
+<link rel="stylesheet" href="/resources/lib/fontawesome/css/font-awesome.css">
 
-<link rel="stylesheet" href="css/quirk.css">
+<link rel="stylesheet" href="/resources/css/quirk.css">
 
-<script src="lib/modernizr/modernizr.js"></script>
+<script src="/resources/lib/modernizr/modernizr.js"></script>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
   <script src="../lib/html5shiv/html5shiv.js"></script>
@@ -73,8 +73,8 @@
 		</div>
 	</div>
 	<!-- panel -->
-	<script src="lib/jquery/jquery.js"></script>
-	<script src="lib/jquery-validate/jquery.validate.js"></script>
+	<script src="/resources/lib/jquery/jquery.js"></script>
+	<script src="/resources/lib/jquery-validate/jquery.validate.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#valid').validate({

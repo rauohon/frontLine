@@ -88,8 +88,10 @@ var tran = {
 		}
 ,
 	callBackSuccess : function (obj, data) {
-		if (typeof data == "string" && data.indexof("errorCode") > -1) {
-			data = eval("(" + data + ")");
+		if (typeof data == "string") {
+			if (data.indexOf("errorCode") > -1) {
+				data = eval("(" + data + ")");
+			}
 		}
 		obj.fn_callback(data);
 	}
@@ -143,7 +145,80 @@ var tran = {
 	}
 ,
 	loading : function (flag) {
-		console.log("asdfsdf");
+		var that = this;
+		
+		if (flag == undefined) {
+			isShow = true;
+		}
+		
+		if (!that._isMake()) {
+			that._make();
+		}
+		
+		$("#lodingDiv").hide();
+		if (isShow) {
+			$("lodingDiv").show();
+		}
+	}
+,
+	_isMake() {
+		return $("#lodingDiv").length > 0;
+	}
+,
+	_make() {
+		var that = this;
+		var _size = 50;
+		var _maxkZindex = that._getMaxZindex();
+		var _$div = $(documnet.createElement("div"));
+		
+		_$div.css({
+		  	  'position': 'fixed'
+			, 'left': '0'
+			, 'right': '0'
+			, 'top': '0'
+			, 'bottom': '0'
+			, 'z-index': '0'
+			, 'background': '#000'
+			, 'opacity': '0.6'
+		});
+		
+		_$div.attr("id", "loadingDiv");
+		_$div.hide();
+		
+		var _$img = $(documnet.createElement("img"));
+		_$img.css("z_index", _maxZindex + 2);
+		
+		_$img.css({
+		  	  'position': 'fixed'
+			, 'left': 'px'
+			, 'height': 'px'
+			, 'right': '50%'
+			, 'top': '50%'
+			, '-webkit-transform': 'translate(-50%, -50%)'
+			, 'transform': 'translate(-50%, -50%)'
+		});
+		
+		_$img.attr("id", "loadingImg");
+		_$img.attr("src", "/resources/images/cmmn/loading_01.gif");
+		
+		_$div.append(_$img);
+		
+		$("body").append(_$div);
+	}
+,
+	_getMaxZindex() {
+		var _maxZindex = 0;
+		
+		$("*").each(function() {
+			var _thisZindex = $(this).css("z-index") * 1;
+			if (!isNaN(_thisZindex)) {
+				if (_maxZindex < _thisZindex) {
+					_maxZindex = _thisZindex;
+				}
+			}
+		});
+		
+		return _maxZindex;
 	}
 }
 

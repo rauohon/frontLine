@@ -171,7 +171,7 @@
           <li style="display: none">
             <div class="btn-group">
               <button type="button" class="btn btn-logged" data-toggle="dropdown">
-                <img src="images/photos/loggeduser.png" alt="" />
+                <img src="/resources/images/photos/loggeduser.png" alt="" />
                 Elen Adarna
                 <span class="caret"></span>
               </button>

@@ -1,24 +1,23 @@
-package com.rauOhon.frontLine.user.service;
+package com.rauOhon.frontLine.game.service;
 
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rauOhon.frontLine.cmmn.utils.FnlMap;
 
 /**
- * 1. 클래스	: UserService.java
+ * 1. 클래스	: GameNomalService.java
  * 2. 작성자	: RAU
- * 3. 작성시간	: 2018. 10. 7.
+ * 3. 작성시간	: 2019. 5. 4.
  *
  * <pre>
- * 설명			:
+ * 설명			: 
  * </pre>
  *
  * 	수정일		수정자		수정내용
  * ----------------------------------------
  * 
  */
-public interface UserService {
-	
-	public ModelAndView entrance(int jobCnt, FnlMap fnlMap) throws Exception;
+public interface GameNormalService {
 
+	public ModelAndView entrance(int jobCnt, FnlMap fnlMap) throws Exception;
 }

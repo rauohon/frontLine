@@ -45,11 +45,16 @@ public class CmmnDao extends SqlSessionDaoSupport {
 	}
 	
 	public List<FnlMap> select(String queryId, Object fnlMap) {
-		return getSetmap(getSqlSession().selectList(queryId, fnlMap));
+		return getSetListMap(getSqlSession().selectList(queryId, fnlMap));
 	}
 	
-	private List<FnlMap> getSetmap(List<HashMap<Object, Object>> selectList) {
+	private List<FnlMap> getSetListMap(List<HashMap<Object, Object>> selectList) {
 		List<FnlMap> resultList = new LinkedList<FnlMap>();
+		
+		if (selectList.size() == 0 || selectList == null) {
+			return null;
+		}
+		
 		Iterator<HashMap<Object, Object>> listIter = selectList.iterator();
 		
 		while (listIter.hasNext()) {
@@ -65,6 +70,11 @@ public class CmmnDao extends SqlSessionDaoSupport {
 	
 	private FnlMap getSetMap(Map<Object, Object> hashMap) {
 		FnlMap resultMap = new FnlMap();
+		
+		if (hashMap == null) {
+			return null;
+		}
+		
 		Iterator<Object> mapIter = hashMap.keySet().iterator();
 		
 		while (mapIter.hasNext()) {

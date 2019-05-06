@@ -39,18 +39,18 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private Encryption encrtption;
 	
-	Logger log = LoggerFactory.getLogger(this.getClass());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 	private ModelAndView mav = new ModelAndView();
 	
 	@Override
 	public ModelAndView entrance (int jobCnt, FnlMap fnlMap) throws Exception {
-		log.info(">>>>>>>>>>>>>>>>>>>>signUp > entrance : {}", jobCnt);
+		log.info(">>>>>>>>>>>>>>>>>>>> entrance : {}", jobCnt);
 		fnlMap.loggigMap();
 		
 		switch(jobCnt) {
 			case 0 :
-				mav = signUp(fnlMap);
+				mav = insertSignUp(fnlMap);
 				break;
 			
 			case 1 :
@@ -80,12 +80,12 @@ public class UserServiceImpl implements UserService{
 	 * @param	: FnlMap
 	 * @return	: ModelAndView
 	 */
-	private ModelAndView signUp (FnlMap fnlMap) throws Exception {
+	private ModelAndView insertSignUp (FnlMap fnlMap) throws Exception {
 		log.debug(">>>>>>>>>>>>>>>>>>>>signUp > service");
-		String pageName = "user/lgon.lgon_signUp";
+		String trgtPage = "user/lgon.lgon_signUp";
 		
 		if (idCheck(fnlMap)) {
-			pageName = "user/signUp";
+			trgtPage = "user/signUp";
 			mav.addObject("errorDetail", "이미 가입된 아이디에요.");
 		} else {
 			String mbIdno = getMbIdno(fnlMap);
@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService{
 			cmmnDao.insert("user.FNL1001.signUp", fnlMap.getMap());
 		}
 		
-		mav.setViewName(pageName);
+		mav.setViewName(trgtPage);
 		
 		return mav;
 	}
@@ -119,14 +119,14 @@ public class UserServiceImpl implements UserService{
 	 */
 	private ModelAndView lgon (FnlMap fnlMap) throws Exception {
 		log.debug(">>>>>>>>>>>>>>>>>>>>lgon > service");
-		String pageName = "cmmn/home.tiles";
+		String trgtPage = "cmmn/home.tiles";
 		
 		if (!idCheck(fnlMap)) {
-			pageName = "user/lgon.lgon_signUp";
+			trgtPage = "user/lgon.lgon_signUp";
 			mav.addObject("errorDetail", "로그인에 실패했습니다. 아이디와 비밀번호를 확인해 주세요.");
 		} else {
 			if (!lgonCheck(fnlMap)) {
-				pageName = "user/lgon.lgon_signUp";
+				trgtPage = "user/lgon.lgon_signUp";
 				cmmnDao.update("user.FNL1001.updateMbErrCnt", fnlMap.getMap());
 				mav.addObject("errorDetail", "로그인에 실패했습니다. 아이디와 비밀번호를 확인해 주세요.");
 			} else { // 로그인 성공
@@ -134,13 +134,13 @@ public class UserServiceImpl implements UserService{
 				session.setAttribute("sessionId", sesseionMap.getMap());
 				int mbErrCnt = sesseionMap.getInt("mbErrCnt");
 				if (mbErrCnt > 5) {
-					pageName = "user/lgon.lgon_signUp";
+					trgtPage = "user/lgon.lgon_signUp";
 					mav.addObject("errorDetail", "로그인 실패 횟수가 초과 되었습니다. 관리자에게 문의 바랍니다.");
 				}
 				
 			}
 		}
-		mav.setViewName(pageName);
+		mav.setViewName(trgtPage);
 
 		return mav;
 	}
@@ -155,9 +155,9 @@ public class UserServiceImpl implements UserService{
 	 */
 	private ModelAndView lgout(FnlMap fnlMap) throws Exception {
 		log.debug(">>>>>>>>>>>>>>>>>>>>lgout > service");
-		String pageName = "cmmn/home.tiles";
+		String trgtPage = "cmmn/home.tiles";
 		session.removeAttribute("sessionId");
-		mav.setViewName(pageName);
+		mav.setViewName(trgtPage);
 		return mav;
 	}
 	
