@@ -47,7 +47,12 @@ var tran = {
 			
 			var jsonObjData = {};
 			
+			that.loading(true);
+			
 			if (cmmn.isEmpty(obj.processData)) {
+				console.log("------------");
+				console.log(obj.data);
+				console.log("------------");
 				jsonObjData = {
 					  url: obj.url
 					, accept: DEF_ACCEPT
@@ -67,6 +72,9 @@ var tran = {
 						
 				}
 			} else {
+				console.log("------------");
+				console.log(obj.data);
+				console.log("------------");
 				jsonObjData = {
 					  url: obj.url
 					, accept: DEF_ACCEPT
@@ -88,8 +96,13 @@ var tran = {
 		}
 ,
 	callBackSuccess : function (obj, data) {
+		tran.loading(false);
 		if (typeof data == "string") {
 			if (data.indexOf("errorCode") > -1) {
+				if (data.indexOf("&#034;") > -1) {
+					data = data.replace(/&#034;/g,"\"");
+				}
+				
 				data = eval("(" + data + ")");
 			}
 		}
@@ -97,8 +110,7 @@ var tran = {
 	}
 ,
 	callBackError : function (XMLHttpRequest, textStatus, errorThrown, obj) {
-		var that = this;
-		that.loading(false);
+		tran.loading(false);
 		
 		var msg = "서버와 통신 중 오류가 발생했습니다.";
 		var status =  XMLHttpRequest.status;
@@ -148,16 +160,16 @@ var tran = {
 		var that = this;
 		
 		if (flag == undefined) {
-			isShow = true;
+			flag = true;
 		}
 		
 		if (!that._isMake()) {
 			that._make();
 		}
 		
-		$("#lodingDiv").hide();
-		if (isShow) {
-			$("lodingDiv").show();
+		$("#loadingDiv").css("display", "none");
+		if (flag) {
+			$("#loadingDiv").css("display", "block");
 		}
 	}
 ,
@@ -168,8 +180,8 @@ var tran = {
 	_make() {
 		var that = this;
 		var _size = 50;
-		var _maxkZindex = that._getMaxZindex();
-		var _$div = $(documnet.createElement("div"));
+		var _maxZindex = that._getMaxZindex();
+		var _$div = $(document.createElement("div"));
 		
 		_$div.css({
 		  	  'position': 'fixed'
@@ -177,7 +189,7 @@ var tran = {
 			, 'right': '0'
 			, 'top': '0'
 			, 'bottom': '0'
-			, 'z-index': '0'
+			, 'z-index': _maxZindex
 			, 'background': '#000'
 			, 'opacity': '0.6'
 		});
@@ -185,7 +197,7 @@ var tran = {
 		_$div.attr("id", "loadingDiv");
 		_$div.hide();
 		
-		var _$img = $(documnet.createElement("img"));
+		var _$img = $(document.createElement("img"));
 		_$img.css("z_index", _maxZindex + 2);
 		
 		_$img.css({
@@ -218,7 +230,7 @@ var tran = {
 			}
 		});
 		
-		return _maxZindex;
+		return 6000;
 	}
 }
 

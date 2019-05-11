@@ -24,6 +24,7 @@
 			 , MC_IMGNAME
 			 , MC_DEL_YN
 			 , MC_USE_YN
+			 , #{mbIdno} AS MB_IDNO
 		  FROM FNL1002
 		 WHERE MC_MBID = #{mbIdno}
 	</select>

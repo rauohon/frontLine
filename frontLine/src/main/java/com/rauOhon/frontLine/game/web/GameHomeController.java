@@ -1,12 +1,15 @@
 package com.rauOhon.frontLine.game.web;
 
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,12 +50,16 @@ public class GameHomeController {
 	}
 	
 	@PostMapping(value = "/createCharacter.do")
-	public ModelAndView createCharacter (FnlMap fnlMap) throws Exception {
-		log.info(">>>>>>>>>>gameHome > controller");
+	public String createCharacter (ModelMap model, @RequestBody HashMap<Object, Object> hashMap) throws Exception {
+		log.info(">>>>>>>>>>gameHome > controller : {}", hashMap);
+		FnlMap fnlMap = new FnlMap();
+		fnlMap.putAll(hashMap);
 		
-		mav = gameNormalService.entrance(1, fnlMap);
+		String result = gameNormalService.insertCharacter(fnlMap);
 		
-		return mav;
+		model.addAttribute("jsonString", result);
+		
+		return "cmmn/jsonString";
 	}
 
 }

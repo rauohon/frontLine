@@ -95,8 +95,6 @@ public class UserServiceImpl implements UserService{
 			
 			fnlMap.put("mbPass", mbPwd);
 			
-			fnlMap.loggigMap();
-			
 			cmmnDao.insert("user.FNL1001.signUp", fnlMap.getMap());
 		}
 		
@@ -106,7 +104,7 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	// 사용자 idno 추출
-	private String getMbIdno(FnlMap fnlMap) {
+	private String getMbIdno(FnlMap fnlMap) throws Exception {
 		return (String) cmmnDao.selectByPk("user.FNL1001.getMbIdno", fnlMap.getMap());
 	}
 

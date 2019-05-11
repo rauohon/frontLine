@@ -158,18 +158,19 @@
 		}
 		var charaStat = JSON.stringify(charaStatObj);
 		
-		var params = {
+		var params = JSON.stringify({
 				  charaNm: charaNm
 				, charaSex: charaSex
 				, charaStat: charaStat
-		}
+		});
 		
 		var tranObj = {
 				  url: "/game/createCharacter.do"
 				, data: params
 				, fn_callback: function (json) {
-					if (json.errorCd > -1) {
-						popup.create("캐릭터가 생성되었습니다.", "aftClosePopup");
+					console.log(json);
+					if (json.errorCode > -1) {
+						popup.create("캐릭터가 생성되었습니다.", {func:"aftClosePopup"});
 					} else {
 						popup.create("캐릭터 생성에 실패했습니다.");
 					}
@@ -180,7 +181,10 @@
 	}
 	
 	function aftClosePopup () {
-		window.location.href = "/game/gameHome.do";
+		$("#frm").attr("action", "/game/gameHome.do");
+		$("#frm").attr("method", "post");
+		console.log("asdf")
+		$("#frm").submit();
 	}
 	
 </script>

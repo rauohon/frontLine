@@ -4,7 +4,7 @@ var popup = {
 		var popupHtml = that.setHtml(msg, obj);
 
 		if (!cmmn.isEmpty(obj)) {
-			if (!cmmn.isEmpty(popid)) {
+			if (!cmmn.isEmpty(obj.popid)) {
 				$("#" + obj.popid).remove();
 			} else {
 				$("#cmmnPopupWrap").remove();

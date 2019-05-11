@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gameNormal.FNL1009">
+
+	<!--														-->
+	<!-- 업무내용 : 캐릭터-아이템 생성							-->
+	<!--														-->
+	<insert id="createItemToCharacter" parameterType="fnlMap">
+		/* SQL_id = gameNormal.FNL1009.createItemToCharacter */
+		INSERT INTO FNL1009
+		(
+			   IV_MCIDNO
+			 , IV_ITCODE
+			 , IV_AMOUNT
+		)
+		VALUES
+		(
+			  #{ivMcidno}
+			, #{ivItcode}
+			, 1
+		)
+	</insert>
+</mapper>

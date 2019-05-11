@@ -20,4 +20,6 @@ import com.rauOhon.frontLine.cmmn.utils.FnlMap;
 public interface GameNormalService {
 
 	public ModelAndView entrance(int jobCnt, FnlMap fnlMap) throws Exception;
+
+	public String insertCharacter(FnlMap fnlMap) throws Exception;
 }

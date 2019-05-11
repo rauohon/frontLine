@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gameNormal.FNL1002">
+	
+	<!--														-->
+	<!-- 업무내용 : 캐릭터 생성									-->
+	<!--														-->
+	<select id="getMcIdno" parameterType="fnlMap" resultType="String">
+		/* SQL_id = gameNormal.FNL1002.getMcIdno */
+		SELECT 'MC'||LPAD(FNL02_SEQ_01.NEXTVAL,13,0) FROM DUAL
+	</select>
+
+	<!--														-->
+	<!-- 업무내용 : 캐릭터 생성									-->
+	<!--														-->
+	<insert id="insertCharacter" parameterType="fnlMap">
+		/* SQL_id = gameNormal.FNL1002.insertCharacter */
+		INSERT INTO FNL1002 
+		(
+			   MC_IDNO
+			 , MC_MBID
+			 , MC_NAME
+			 , MC_USE_YN
+			 , MC_DEL_YN
+			 , MC_LEVEL
+			 , MC_STR
+			 , MC_DEX
+			 , MC_INT
+			 , MC_CON
+			 , MC_GOLD
+			 , MC_CDCODE
+			 , MC_NOWHP
+			 , MC_NOWMP
+			 , MC_IMGNAME
+			 , MC_IMGLOCATION 
+		)
+		VALUES
+		(
+			  #{mcIdno}
+		    , #{mbIdno}
+		    , #{mcName}
+		    , 'Y'
+		    , 'N'
+		    , 1
+		    , #{strs}
+		    , #{dexs}
+		    , #{ints}
+		    , #{cons}
+		    , 100
+		    , 'job1'
+		    , 100
+		    , 100
+		    , #{mcImgname}
+		    , #{mcImglocation}
+		)
+	</insert>
+</mapper>
