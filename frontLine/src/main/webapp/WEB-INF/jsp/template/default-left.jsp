@@ -107,12 +107,6 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 							<span>Game Play</span>
 						</a>
 					</li>
-					<li id="gameHome" title="Game play" onClick="javascript:tran.saction('gameHome')">
-						<a>
-							<i class="fa fa fa-connectdevelop"></i> 
-							<span>gotran</span>
-						</a>
-					</li>
 					<li class="nav-parent">
 						<a>
 							<i class="fa fa-th-list"></i>

@@ -29,7 +29,7 @@
 			 , MC_INT
 			 , MC_CON
 			 , MC_GOLD
-			 , MC_CDCODE
+			 , MC_JOBCODE
 			 , MC_NOWHP
 			 , MC_NOWMP
 			 , MC_IMGNAME
@@ -48,7 +48,7 @@
 		    , #{ints}
 		    , #{cons}
 		    , 100
-		    , 'job1'
+		    , 'JOB1'
 		    , 100
 		    , 100
 		    , #{mcImgname}

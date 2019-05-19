@@ -123,32 +123,32 @@ var tran = {
 					
 					try {
 						var json = eval ("(" + XMLHttpRequest.responseText + ")");
-						that.callBackRsltError(obj.svcType, json.errorMsg, "");
+						tran.callBackRsltError(obj.svcType, json.errorMsg, "");
 					} catch(e) {
-						that.callBackRsltError(obj.svcType, msg, "");
+						tran.callBackRsltError(obj.svcType, msg, "");
 					}
 				} else if (status == 401) {
-					that.callBackRsltError(obj.svcType, "로그인이 필요한 기능입니다.", "");
+					tran.callBackRsltError(obj.svcType, "로그인이 필요한 기능입니다.", "");
 				} else {
-					that.callBackRsltError(obj.svcType, msg, "");
+					tran.callBackRsltError(obj.svcType, msg, "");
 				}
 			} else {
-				that.callBackRsltError(obj.svcType, msg, "");
+				tran.callBackRsltError(obj.svcType, msg, "");
 			}
 		} else {
-			that.callBackRsltError(obj.svcType, msg, "");
+			tran.callBackRsltError(obj.svcType, msg, "");
 		}
 	}
 ,
 	callBackRsltError : function (type, msg, lgon) {
 		if (cmmn.isEmpty(lgon)) {
-			cmmn.popup(msg);
+			popup.create(msg);
 		} else {
 			var objFuncData = {
 					  func: "callBackRsltErrorPop"
 					, data: "/public/lgonPage.do"
 			};
-			cmmn.popup(msg, objFuncData);
+			popup.create(msg, objFuncData);
 		}
 	}
 ,

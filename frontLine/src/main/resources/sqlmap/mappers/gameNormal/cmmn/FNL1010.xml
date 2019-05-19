@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gameNormal.cmmn.FNL1010">
+
+	<!--														-->
+	<!-- 업무내용 : 캐릭터 착용 아이템 정보 조회				-->
+	<!--														-->
+	<select id="selectGameCharaEquipInfo" parameterType="fnlMap" resultType="hashmap">
+		/* SQL_id = gameNormal.cmmn.FNL1010.selectGameCharaEquipInfo */
+		SELECT T1.EQ_MCIDNO
+			 , T1.EQ_ITCODE
+			 , IT_TAB.IT_NAME
+			 , T1.EQ_LOC
+			 , LOC_TAB.CD_NAME
+			 , IT_CD_TAB.CD_CODE
+		  FROM FNL1010 T1
+		 INNER JOIN FNL1006 LOC_TAB
+			ON T1.EQ_LOC = LOC_TAB.CD_CODE
+		   AND LOC_TAB.CD_BIG_CODE = 'CD0000000000005'
+		   AND LOC_TAB.CD_DEL_YN = 'N'
+		 INNER JOIN FNL1005 IT_TAB
+			ON T1.EQ_ITCODE = IT_TAB.IT_CODE
+		 INNER JOIN FNL1006 IT_CD_TAB
+			ON IT_TAB.IT_TYPE_CD = IT_CD_TAB.CD_CODE
+		   AND IT_CD_TAB.CD_BIG_CODE = 'CD0000000000002'
+		   AND IT_CD_TAB.CD_DEL_YN = 'N'
+		 WHERE T1.EQ_MCIDNO = #{mcIdno}
+	</select>
+</mapper>

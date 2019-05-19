@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,11 +52,58 @@ public class GameHomeController {
 	
 	@PostMapping(value = "/createCharacter.do")
 	public String createCharacter (ModelMap model, @RequestBody HashMap<Object, Object> hashMap) throws Exception {
-		log.info(">>>>>>>>>>gameHome > controller : {}", hashMap);
+		log.info(">>>>>>>>>>gameHome > controller");
 		FnlMap fnlMap = new FnlMap();
 		fnlMap.putAll(hashMap);
 		
 		String result = gameNormalService.insertCharacter(fnlMap);
+		
+		model.addAttribute("jsonString", result);
+		
+		return "cmmn/jsonString";
+	}
+	
+	@GetMapping(value = "/myCharacterInfo.do")
+	public ModelAndView myCharacterInfo (FnlMap fnlMap) throws Exception {
+		log.info(">>>>>>>>>>myCharacterInfo > controller");
+		mav.setViewName("game/characterInfo.tiles");
+		
+		return mav;
+	}
+	
+	@PostMapping(value = "/getCharacterDtlInfo.do")
+	public String getCharacterDtlInfo(ModelMap model, @RequestBody HashMap<Object, Object> hashMap) throws Exception {
+		log.info(">>>>>>>>>>gameHome > controller");
+		FnlMap fnlMap = new FnlMap();
+		fnlMap.putAll(hashMap);
+		
+		String result = gameNormalService.getCharacterDtlInfo(fnlMap);
+		
+		model.addAttribute("jsonString", result);
+		
+		return "cmmn/jsonString";
+	}
+	
+	@PostMapping(value = "/liftEquipment.do") 
+	public String liftEquipment(ModelMap model, @RequestBody HashMap<Object, Object> hashMap) throws Exception {
+		log.info(">>>>>>>>>>gameHome > controller");
+		FnlMap fnlMap = new FnlMap();
+		fnlMap.putAll(hashMap);
+		
+		String result = gameNormalService.deleteLiftEquipment(fnlMap);
+		
+		model.addAttribute("jsonString", result);
+		
+		return "cmmn/jsonString";
+	}
+	
+	@PostMapping(value = "/equipItem.do") 
+	public String equipItem(ModelMap model, @RequestBody HashMap<Object, Object> hashMap) throws Exception {
+		log.info(">>>>>>>>>>gameHome > controller");
+		FnlMap fnlMap = new FnlMap();
+		fnlMap.putAll(hashMap);
+		
+		String result = gameNormalService.updateEquipItem(fnlMap);
 		
 		model.addAttribute("jsonString", result);
 		

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gameNormal.FNL1010">
+
+	<!--														-->
+	<!-- 업무내용 : 캐릭터-아이템 장착 해제						-->
+	<!--														-->
+	<delete id="deleteLiftEquipment" parameterType="fnlMap">
+		/* SQL_id = gameNormal.FNL1010.deleteLiftEquipment */
+		DELETE FROM FNL1010
+		 WHERE EQ_MCIDNO = #{mcIdno}
+		   AND EQ_ITCODE = #{eqItcode}
+	</delete>
+
+	
+	<!--														-->
+	<!-- 업무내용 : 캐릭터-아이템 장착							-->
+	<!--														-->
+	<update id="updateEquipItem" parameterType="fnlMap">
+		/* SQL_id = gameNormal.FNL1010.updateEquipItem */
+		MERGE INTO FNL1010 S
+		    USING DUAL
+		       ON (S.EQ_MCIDNO = #{mcIdno} AND S.EQ_LOC = #{eqLoc})
+		    WHEN MATCHED THEN
+		        UPDATE SET S.EQ_ITCODE = #{eqItcode}
+		    WHEN NOT MATCHED THEN
+		        INSERT (S.EQ_MCIDNO, S.EQ_ITCODE, S.EQ_LOC) 
+		        VALUES (#{mcIdno}, #{eqItcode}, #{eqLoc})
+	</update>
+
+
+</mapper>

@@ -7,7 +7,7 @@
 <tiles:insertAttribute name="header" />
 </head>
 
-<body>
+<body style="height: 100%;">
 
 	<tiles:insertAttribute name="nav" />
 	<section>

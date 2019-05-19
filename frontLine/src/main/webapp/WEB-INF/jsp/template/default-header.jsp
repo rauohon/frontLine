@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="/resources/lib/fontawesome/css/font-awesome.css">
 <link rel="stylesheet" href="/resources/lib/weather-icons/css/weather-icons.css">
 <link rel="stylesheet" href="/resources/lib/ionicons/css/ionicons.css">
+<link rel="stylesheet" href="/resources/lib/fairytale-icons/flaticon.css">
+<link rel="stylesheet" href="/resources/lib/martial-icons/flaticon.css">
+<link rel="stylesheet" href="/resources/lib/security-icons/flaticon.css">
 <link rel="stylesheet" href="/resources/lib/jquery-toggles/toggles-full.css">
 <link rel="stylesheet" href="/resources/lib/morrisjs/morris.css">
 
@@ -51,10 +54,7 @@
 				$("#frm").attr("action", "/game/gameHome.do");
 				$("#gameHome").addClass('active');
 				$("#frm").attr("method", "post");
-			} else if (pageName == "qksqhr") {
-				$("#frm").attr("action", "qksqhr.do");
 			}
-
 			$("#frm").submit();
 		}
 	}

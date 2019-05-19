@@ -22,4 +22,10 @@ public interface GameNormalService {
 	public ModelAndView entrance(int jobCnt, FnlMap fnlMap) throws Exception;
 
 	public String insertCharacter(FnlMap fnlMap) throws Exception;
+
+	public String getCharacterDtlInfo(FnlMap fnlMap) throws Exception;
+
+	public String deleteLiftEquipment(FnlMap fnlMap) throws Exception ;
+
+	public String updateEquipItem(FnlMap fnlMap) throws Exception;
 }

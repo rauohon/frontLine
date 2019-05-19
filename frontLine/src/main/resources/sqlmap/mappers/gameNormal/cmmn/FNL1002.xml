@@ -7,19 +7,10 @@
 	<!-- 업무내용 : 세션 저장 정보 조회							-->
 	<!--														-->
 	<select id="selectGameInfo" parameterType="fnlMap" resultType="hashmap">
-		/* SQL_id = gameNomal.cmmn.FNL1002.selectGameInfo */
+		/* SQL_id = gameNormal.cmmn.FNL1002.selectGameInfo */
 		SELECT MC_IDNO
 			 , MC_NAME
 			 , MC_MBID
-			 , MC_CDCODE
-			 , MC_LEVEL
-			 , MC_NOWHP
-			 , MC_NOWMP
-			 , MC_STR
-			 , MC_INT
-			 , MC_DEX
-			 , MC_CON
-			 , MC_GOLD
 			 , MC_IMGLOCATION
 			 , MC_IMGNAME
 			 , MC_DEL_YN
@@ -27,6 +18,42 @@
 			 , #{mbIdno} AS MB_IDNO
 		  FROM FNL1002
 		 WHERE MC_MBID = #{mbIdno}
+		   AND MC_DEL_YN = 'N'
+		   AND MC_USE_YN = 'Y'
 	</select>
-
+	
+	<!--														-->
+	<!-- 업무내용 : 캐릭터 상세 정보 조회						-->
+	<!--														-->
+	<select id="selectGameCharaDtlInfo" parameterType="fnlMap" resultType="hashmap">
+		/* SQL_id = gameNormal.cmmn.FNL1002.selectGameCharaDtlInfo */
+		SELECT T1.MC_IDNO
+		     , T1.MC_MBID
+		     , T1.MC_NAME
+		     , T1.MC_JOBCODE
+			 , JOB_TAB.CD_NAME			AS JOB_NAME
+		     , T1.MC_LEVEL
+		     , T1.MC_NOWHP
+		     , T1.MC_NOWMP
+		     , T1.MC_NOWEXP
+			 , EXP_TAB.CD_NAME 			AS REQ_EXP
+		     , T1.MC_STR
+		     , T1.MC_INT
+		     , T1.MC_DEX
+		     , T1.MC_CON
+		     , T1.MC_GOLD
+		     , T1.MC_IMGLOCATION
+		     , T1.MC_IMGNAME
+		  FROM FNL1002 T1
+		 INNER JOIN FNL1006 EXP_TAB
+		    ON TO_CHAR(T1.MC_LEVEL) || 'LVEXP' = EXP_TAB.CD_CODE
+		   AND EXP_TAB.CD_BIG_CODE = 'CD0000000000004'
+		   AND EXP_TAB.CD_DEL_YN = 'N'
+		 INNER JOIN FNL1006 JOB_TAB
+			ON T1.MC_JOBCODE = JOB_TAB.CD_CODE
+		   AND JOB_TAB.CD_BIG_CODE = 'CD0000000000003'
+		 WHERE T1.MC_DEL_YN = 'N'
+		   AND T1.MC_USE_YN = 'Y'
+		   AND T1.MC_IDNO = #{mcIdno}
+	</select>
 </mapper>

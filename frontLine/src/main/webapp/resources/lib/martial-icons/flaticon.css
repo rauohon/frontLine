@@ -1,0 +1,85 @@
+@font-face {
+  font-family: "Mirtial";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff2") format("woff2"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Mirtial";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+.mirtial:before {
+      display: inline-block;
+  font-family: "Mirtial";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    display: block;
+}
+
+.flaticon-001-sai:before { content: "\f100"; }
+.flaticon-002-glove:before { content: "\f101"; }
+.flaticon-003-toya:before { content: "\f102"; }
+.flaticon-004-karate:before { content: "\f103"; }
+.flaticon-005-punching-bag:before { content: "\f104"; }
+.flaticon-006-boxing-ring:before { content: "\f105"; }
+.flaticon-007-dohyo:before { content: "\f106"; }
+.flaticon-008-medal:before { content: "\f107"; }
+.flaticon-009-shuriken:before { content: "\f108"; }
+.flaticon-010-drum:before { content: "\f109"; }
+.flaticon-011-punch:before { content: "\f10a"; }
+.flaticon-012-sword:before { content: "\f10b"; }
+.flaticon-013-glove:before { content: "\f10c"; }
+.flaticon-014-tank-top:before { content: "\f10d"; }
+.flaticon-015-wing-chun:before { content: "\f10e"; }
+.flaticon-016-kendo:before { content: "\f10f"; }
+.flaticon-017-punching-ball:before { content: "\f110"; }
+.flaticon-018-kendo:before { content: "\f111"; }
+.flaticon-019-black-belt:before { content: "\f112"; }
+.flaticon-020-gong:before { content: "\f113"; }
+.flaticon-021-fist:before { content: "\f114"; }
+.flaticon-022-skipping:before { content: "\f115"; }
+.flaticon-023-placeholder:before { content: "\f116"; }
+.flaticon-024-sword:before { content: "\f117"; }
+.flaticon-025-martial-arts:before { content: "\f118"; }
+.flaticon-026-kunai:before { content: "\f119"; }
+.flaticon-027-gum-shield:before { content: "\f11a"; }
+.flaticon-028-helmet:before { content: "\f11b"; }
+.flaticon-029-gloves:before { content: "\f11c"; }
+.flaticon-030-shuriken:before { content: "\f11d"; }
+.flaticon-031-karate:before { content: "\f11e"; }
+.flaticon-032-punching:before { content: "\f11f"; }
+.flaticon-033-belt:before { content: "\f120"; }
+.flaticon-034-punching-ball:before { content: "\f121"; }
+.flaticon-035-pills:before { content: "\f122"; }
+.flaticon-036-spear:before { content: "\f123"; }
+.flaticon-037-karate:before { content: "\f124"; }
+.flaticon-038-punching-ball:before { content: "\f125"; }
+.flaticon-039-trophy:before { content: "\f126"; }
+.flaticon-040-baton:before { content: "\f127"; }
+.flaticon-041-sumo:before { content: "\f128"; }
+.flaticon-042-kettlebell:before { content: "\f129"; }
+.flaticon-043-hakama:before { content: "\f12a"; }
+.flaticon-044-nunchaku:before { content: "\f12b"; }
+.flaticon-045-shuriken:before { content: "\f12c"; }
+.flaticon-046-yin-yang:before { content: "\f12d"; }
+.flaticon-047-chishi:before { content: "\f12e"; }
+.flaticon-048-mace:before { content: "\f12f"; }
+.flaticon-049-first-aid-kit:before { content: "\f130"; }
+.flaticon-050-boxing-shorts:before { content: "\f131"; }

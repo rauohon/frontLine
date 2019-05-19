@@ -18,7 +18,8 @@ var popup = {
 		if (!cmmn.isEmpty(obj)) {
 			$("#cmmnPopup").data("popid", obj.popid);
 			$("#cmmnPopup").data("data", obj.data);
-			$("#cmmnPopup").data("func", obj.func);
+			$("#cmmnPopup").data("cnfmfunc", obj.cnfmfunc);
+			$("#cmmnPopup").data("cancfunc", obj.cancfunc);
 			$("#cmmnPopup").data("foc", obj.foc);
 			$("#cmmnPopup").data("loccnfm", obj.loccnfm);
 			$("#cmmnPopup").data("loccanc", obj.loccanc);
@@ -55,7 +56,7 @@ var popup = {
 		popupHtml += "				<div class=\"popup_btn\">";
 		
 		if (!cmmn.isEmpty(obj)) {
-			if (!cmmn.isEmpty(obj.popid)) {
+			if (!cmmn.isEmpty(obj.btncanc)) {
 				popupHtml += "				<span><a href=\"javascript:void(0)\" id=\"btnPopCanc\" class=\"btn btn-danger btn-quirk btn-stroke\">" + obj.btncanc + "</a></span>";
 			}
 			
@@ -82,7 +83,7 @@ $(document).on("click", "#btnPopCnfm", function (e) {
 	
 	var popid = $("#cmmnPopup").data("popid");
 	var data = $("#cmmnPopup").data("data");
-	var func = $("#cmmnPopup").data("func");
+	var func = $("#cmmnPopup").data("cnfmfunc");
 	var foc = $("#cmmnPopup").data("foc");
 	var loccnfm = $("#cmmnPopup").data("loccnfm");
 	
@@ -109,14 +110,14 @@ $(document).on("click", "#btnPopCnfm", function (e) {
 	}
 });
 
-$(document).on("click", "#btnPopCnfm", function (e) {
+$(document).on("click", "#btnPopCanc", function (e) {
 	e.preventDefault();
 	
 	var popid = $("#cmmnPopup").data("popid");
 	var data = $("#cmmnPopup").data("data");
-	var func = $("#cmmnPopup").data("func");
+	var func = $("#cmmnPopup").data("cancfunc");
 	var foc = $("#cmmnPopup").data("foc");
-	var loccnfm = $("#cmmnPopup").data("loccnfm");
+	var loccanc = $("#cmmnPopup").data("loccanc");
 	
 	if (!cmmn.isEmpty(popid)) {
 		$("#" + popid).remove();
@@ -126,9 +127,9 @@ $(document).on("click", "#btnPopCnfm", function (e) {
 	
 	if (!cmmn.isEmpty(func)) {
 		if (!cmmn.isEmpty(data)) {
-			eval(func + "(\"" + data + "\", \"cnfm\")");
+			eval(func + "(\"" + data + "\", \"canc\")");
 		} else {
-			eval(func + "(\"cnfm\")");
+			eval(func + "(\"canc\")");
 		}
 	}
 	
@@ -136,7 +137,7 @@ $(document).on("click", "#btnPopCnfm", function (e) {
 		$("#" + foc).focus();
 	}
 	
-	if (!cmmn.isEmpty(loccnfm)) {
-		window.location.href = loccnfm;
+	if (!cmmn.isEmpty(loccanc)) {
+		window.location.href = loccanc;
 	}
 });

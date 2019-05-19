@@ -23,6 +23,16 @@
 				popup.create(errCdMsg[1]);
 			}
 		})
+		
+		$("#charaNm").on("focusout", function () {
+			var pattern_spc = /[~!@#$%^&*()_+|<>?:{}(\s*)]/g;
+			var val = $(this).val();
+			if (pattern_spc.test(val)) {
+				popup.create("특수문자는 사용할 수 없어요");
+				val = val.replace(pattern_spc, "");
+				$(this).val(val);
+			}
+		})
 	})
 	
 	function setSelectedCharaTypeTxt ($radio) {
@@ -168,7 +178,6 @@
 				  url: "/game/createCharacter.do"
 				, data: params
 				, fn_callback: function (json) {
-					console.log(json);
 					if (json.errorCode > -1) {
 						popup.create("캐릭터가 생성되었습니다.", {func:"aftClosePopup"});
 					} else {

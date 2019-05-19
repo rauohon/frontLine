@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gameNormal.cmmn.FNL1005">
+
+	<!--														-->
+	<!-- 업무내용 : 아이템 정보 조회							-->
+	<!--														-->
+	<select id="selectItemInfo" parameterType="fnlMap" resultType="hashmap">
+		/* SQL_id = gameNormal.cmmn.FNL1005.selectItemInfo */
+		SELECT IT_CODE
+			 , IT_NAME
+			 , IT_NEEDABILITY
+			 , IT_PLUSABILITY1
+			 , IT_PLUSABILITY2
+			 , IT_PLUSABILITY3
+			 , IT_DEL_YN
+			 , IT_REG_MBID
+			 , IT_REG_DATE
+			 , IT_CHNG_MBID
+			 , IT_CHNG_DATE
+			 , IT_TYPE_CD
+			 , IT_EQ_LOC
+		  FROM FNL1005
+		 WHERE IT_CODE = #{itCode}
+	</select>
+</mapper>
