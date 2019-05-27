@@ -49,6 +49,8 @@ var tran = {
 			
 			that.loading(true);
 			
+			console.log(JSON.stringify(obj.data));
+			
 			if (cmmn.isEmpty(obj.processData)) {
 				console.log("------------");
 				console.log(obj.data);
@@ -61,7 +63,7 @@ var tran = {
 					}
 					, type: DEF_TYPE
 					, timeout: DEF_TIMEOUT
-					, data: obj.data
+					, data: JSON.stringify(obj.data)
 					, async: DEF_ASYNC
 					, success: function(data) {
 						that.callBackSuccess.call(this, obj, data);
@@ -82,7 +84,7 @@ var tran = {
 					, timeout: DEF_TIMEOUT
 					, processData: false
 					, contentType: false
-					, data: obj.data
+					, data: JSON.stringify(obj.data)
 					, async: DEF_ASYNC
 					, success: function(data) {
 						that.callBackSuccess.call(this, obj, data);

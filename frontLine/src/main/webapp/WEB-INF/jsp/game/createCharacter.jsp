@@ -168,11 +168,11 @@
 		}
 		var charaStat = JSON.stringify(charaStatObj);
 		
-		var params = JSON.stringify({
+		var params = {
 				  charaNm: charaNm
 				, charaSex: charaSex
 				, charaStat: charaStat
-		});
+		};
 		
 		var tranObj = {
 				  url: "/game/createCharacter.do"

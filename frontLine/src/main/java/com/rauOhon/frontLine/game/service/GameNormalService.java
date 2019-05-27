@@ -10,7 +10,7 @@ import com.rauOhon.frontLine.cmmn.utils.FnlMap;
  * 3. 작성시간	: 2019. 5. 4.
  *
  * <pre>
- * 설명			: 
+ * 설명			: 상점 기본 서비스
  * </pre>
  *
  * 	수정일		수정자		수정내용

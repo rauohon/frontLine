@@ -6,7 +6,15 @@
 		$("#myCharacterInfo").on("click", function () {
 			$("#frm").attr("action", "/game/myCharacterInfo.do");
 			$("#frm").submit();
-		});	
+		});
+		
+		$(".shop").on("click", function () {
+			var trgtId = $(this).attr("id");
+			
+			$("#pageName").val(trgtId);
+			$("#frm").attr("action", "/shop/shopHome.do");
+			$("#frm").submit();
+		})
 		
 	})
 
@@ -26,7 +34,7 @@
 						</div>
 						<div class="panel-body">
 							<h2>
-								현재 <span class="text-primary">(레벨 : 10 | 경험치 :  90% (90 / 100)달성 )</span>
+								현재 <span id="charaInfo" class="text-primary">${charaInfo }</span>
 							</h2>
 							내 캐릭터의 상태를 확인 합니다.
 						</div>
@@ -78,7 +86,7 @@
 		</div>
 		<div class="row panel-quick-page">
 			<div class="col-sm-4 page-user">
-				<div class="panel">
+				<div id="weaponShop" class="panel shop">
 					<div class="panel-heading">
 						<h4 class="panel-title">무기상점</h4>
 					</div>
@@ -90,7 +98,7 @@
 				</div>
             </div>
 			<div class="col-sm-4 page-user">
-				<div class="panel">
+				<div id="armourShop" class="panel shop">
 					<div class="panel-heading">
 						<h4 class="panel-title">방어구 상점</h4>
 					</div>
@@ -102,7 +110,7 @@
 				</div>
             </div>
 			<div class="col-sm-4 page-user">
-				<div class="panel">
+				<div id="potionShop" class="panel shop">
 					<div class="panel-heading">
 						<h4 class="panel-title">포션상점</h4>
 					</div>

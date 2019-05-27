@@ -71,12 +71,17 @@
 			popup.create(msg, obj);
 		});
 		
+		$(".local-shift").on("click", function () {
+			$("#charaStatLoc").toggleClass("local-dpn");
+			$("#charaAbilLoc").toggleClass("local-dpn");
+		});
+		
 	})
 	
 	function getCharacterDtlInfo () {
-		var params = JSON.stringify({
+		var params = {
 				abc:"abcd"
-		});
+		};
 		
 		var tranObj = {
 				  url: "/game/getCharacterDtlInfo.do"
@@ -103,6 +108,7 @@
 		var equipInfo = data.charaEquipInfo;
 		
 		randerDtlInfo(dtlInfo); // 캐릭터 상태 셋팅
+		randerAbilInfo(dtlInfo, equipInfo); // 캐릭터 능력치 셋팅
 		randerInvenInfo(weaponInvenList, "weaponInven"); // 캐릭터 소지 무기 셋팅
 		randerInvenInfo(armourInvenList, "armourInven"); // 캐릭터 소지 방어구 셋팅
 		randerInvenInfo(potionInvenList, "potionInven"); // 캐릭터 소지 포션 셋팅
@@ -156,11 +162,15 @@
 		html += "			<th>MP</th>";
 		html += "			<td>" + dtlInfo.mcNowmp + "</td>";
 		html += "		</tr>";
+		html += "		<tr>";
+		html += "			<th>소지금</th>";
+		html += "			<td>" + dtlInfo.mcGold + "</td>";
+		html += "		</tr>";
 		html += "	</tbody>";
 		html += "</table>";
 		
 		// 능력치 셋팅
-		$("#charaStatLoc").html(html); 
+		$("#charaStatLoc").html(html);
 		
 		// 경험치 셋팅
 		var expPercents = (dtlInfo.mcNowexp / dtlInfo.reqExp) * 100;
@@ -172,6 +182,93 @@
 		img	+= dtlInfo.mcImgname + "\" class=\"media-object img-circle\" style=\"height: 100%; width: 100%;\">";
 		$("#charaImgLoc").html(img);
 		
+	}
+	
+	function randerAbilInfo (dtlInfo, equipInfo) { // 캐릭터 능력치 셋팅
+		var attckPt = Math.round((dtlInfo.mcStr + dtlInfo.mcDex/2 + dtlInfo.mcCon) * 2);
+		var defencePt = (dtlInfo.mcStr + dtlInfo.mcCon) * 2;
+		var actionPt = (Math.round(dtlInfo.mcStr/2) + dtlInfo.mcCon) * 3;
+		var healthPt = (dtlInfo.mcStr*4 + dtlInfo.mcCon*6) * 2;
+		
+		var addAttackPt = 0;
+		var addDefencePt = 0;
+		var addActionPt = 0;
+		var addHealthPt = 0;
+		
+		$("#charaAbilLoc").html("");
+
+		for (var i = 0; i < equipInfo.length; i++) {
+			var eqCode = equipInfo[i].cdCode;
+			switch (eqCode) {
+				case "AT" :
+					if (cmmn.isEmpty(equipInfo[i].itPlusCnt)) {
+						attckPt = attckPt + attckPt * equipInfo[i].itMultiCnt;
+						addAttackPt += attckPt * equipInfo[i].itMultiCnt;
+					} else {
+						attckPt += equipInfo[i].itPlusCnt;
+						addAttackPt += equipInfo[i].itPlusCnt
+					}
+					break;
+				
+				case "DF" :
+					if (cmmn.isEmpty(equipInfo[i].itPlusCnt)) {
+						defencePt = defencePt + defencePt * equipInfo[i].itMultiCnt;
+						addDefencePt += attckPt * equipInfo[i].itMultiCnt;
+					} else {
+						defencePt += equipInfo[i].itPlusCnt;
+						addDefencePt += equipInfo[i].itPlusCnt;
+					}
+					
+					break;
+				
+				case "AC" :
+					if (cmmn.isEmpty(equipInfo[i].itPlusCnt)) {
+						actionPt = actionPt + actionPt * equipInfo[i].itMultiCnt;
+						addActionPt = actionPt * equipInfo[i].itMultiCnt;
+					} else {
+						actionPt += equipInfo[i].itPlusCnt;
+						addActionPt += equipInfo[i].itPlusCnt;
+					}
+					
+					break;
+				case "HP" :
+					if (cmmn.isEmpty(equipInfo[i].itPlusCnt)) {
+						healthPt = healthPt + healthPt * equipInfo[i].itMultiCnt;
+						addHealthPt = healthPt * equipInfo[i].itMultiCnt;
+					} else {
+						healthPt += equipInfo[i].itPlusCnt;
+						addHealthPt += equipInfo[i].itPlusCnt;
+					}
+					
+					break;
+			}
+		}
+		var html = "";
+		html += "<table class=\"table nomargin table-hover\">";
+		html += "	<tbody>";
+		html += "		<tr>";
+		html += "			<th>공격력</th>";
+		html += "			<td id=\"attckPt\">" + attckPt + " (+" + addAttackPt + ")" + "</td>";
+		html += "		</tr>";
+		html += "		<tr>";
+		html += "			<th>체력</th>";
+		html += "			<td id=\"healthPt\">" + healthPt + " (+" + addHealthPt + ")" + "</td>";
+		html += "		</tr>";
+		html += "		<tr>";
+		html += "			<th>방어력</th>";
+		html += "			<td id=\"defencePt\">" + defencePt + " (+" + addDefencePt + ")" + "</td>";
+		html += "		</tr>";
+		html += "		<tr>";
+		html += "			<th>기술력</th>";
+		html += "			<td id=\"actionPt\">" + actionPt + " (+" + addActionPt + ")" + "</td>";
+		html += "		</tr>"
+		html += "	</tbody>";
+		html += "</table>";
+		
+		var $html = $(html);
+		var table = document.createElement("table");
+		
+		$("#charaAbilLoc").append($html);
 	}
 	
 	function randerInvenInfo (list, loc) { // 캐릭터 소지 아이템 셋팅
@@ -195,7 +292,11 @@
 				plusContents = "회복량 : ";
 			}
 			
-			plusContents += list[i].itPlusability1;
+			if (cmmn.isEmpty(list[i].itPlusCnt)) {
+				plusContents += "x " + list[i].itMultiCnt;
+			} else {
+				plusContents += "+ " + list[i].itPlusCnt;
+			}
 
 			html += "	<div class=\"col-sm-2 local-item\" style=\"border: 1px solid\" title=\"" + plusContents + "\" data-iteqloc=\"" + list[i].itEqLoc + "\" data-itcode=\"" + list[i].ivItcode + "\">";
 			html += "		<div class=\"panel\">";
@@ -212,6 +313,7 @@
 	}
 	
 	function randerEquipInfo (equipInfo) { // 캐릭터 장비 아이템 셋팅
+		
 		for (var item of equipInfo) {
 			var eqLoc = item.eqLoc;
 			var html = "";
@@ -260,29 +362,34 @@
 				html = "무기 : ";
 				break;
 			}
-			if ("HAND" != eqLoc) {
 				html += item.itName + "<p data-itcode=\"" + item.eqItcode + "\"></p>";
+			if ("HAND" != eqLoc) {
 				$("#eq" + eqLoc).children(".panel").addClass("panel-info-full");
 				$("#eq" + eqLoc + " .panel-heading").html(html);
 			} else {
 				//A & B 처리
+				$("#eqHAND_A").children(".panel").addClass("panel-info-full");
+				$("#eqHAND_B").children(".panel").addClass("panel-info-full");
+				$("#eqHAND_A .panel-heading").html(html);
+				$("#eqHAND_A .panel-heading").html(html);
 			}
-			
 		}
 		
 	}
 
 	function cnfmLiftEquipment (data) {
 		
-		var params = JSON.stringify({
+		var params = {
 			eqItcode: data
-		});
+		};
 		
 		var tranObj = {
 				  url: "/game/liftEquipment.do"
 				, data: params
 				, fn_callback: function (json) {
 					if (json.errorCode > -1) {
+						effectiveEquip(json);
+
 						$g_divEqItem.removeClass("panel-info-full");
 						var pre = "<h6 class=\"panel-title\">";
 						var aft = "</h6>"
@@ -299,14 +406,14 @@
 		
 		tran.saction(tranObj);
 	}
-
+	
 	function cnfmEquipItem (data) {
 		var itCode = data.split(",")[0];
 		var eqLoc = data.split(",")[1];
-		var params = JSON.stringify({
+		var params = {
 			  itCode: itCode
 			, eqLoc: eqLoc
-		});
+		};
 		
 		var tranObj = {
 				  url: "/game/equipItem.do"
@@ -365,6 +472,7 @@
 							$("#eq" + eqLoc).children(".panel").addClass("panel-info-full");
 							$("#eq" + eqLoc + " .panel-heading").html(html);
 						}
+						effectiveEquip(json);
 						popup.create("장착되었습니다.");
 					} else {
 						var obj = {
@@ -376,6 +484,15 @@
 		}
 		tran.saction(tranObj);
 	}
+	
+	function effectiveEquip(json) {
+		var data = JSON.parse(json.resultData);
+		var dtlInfo = data.charaDtlInfo;
+		var equipInfo = data.charaEquipInfo;
+		
+		randerAbilInfo(dtlInfo, equipInfo)
+	}
+
 </script>
 
 
@@ -396,7 +513,12 @@
 								</div>
 							</div>
 							<div class="col-sm-7" style="height: 100%;">
+								<ul class="panel-options">
+					            	<li class="local-shift"><a onclick="javastript:void(0)"><i class="fa fa-refresh" style="color: royalblue; font-size:27px;"></i></a></li>
+				            	</ul>
 								<div id="charaStatLoc" class="panel-body" style="height: 100%; padding-top: 8px; padding-bottom: 8px; overflow: auto;">
+								</div>
+								<div id="charaAbilLoc" class="panel-body local-dpn" style="height: 100%; padding-top: 8px; padding-bottom: 8px; overflow: auto;">
 								</div>
 							</div>
 						</div>
@@ -424,7 +546,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="page-icon">
-							<i class="loc-icon fimanager flaticon-030-amulet"></i>
+							<i class="local-icon fimanager flaticon-030-amulet"></i>
 						</div>
 					</div>
 				</div>
@@ -436,7 +558,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="page-icon">
-							<i class="loc-icon fimanager flaticon-018-viking-helmet"></i>
+							<i class="local-icon fimanager flaticon-018-viking-helmet"></i>
 						</div>
 					</div>
 				</div>
@@ -448,7 +570,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="page-icon">
-							<i class="loc-icon fimanager flaticon-006-gem"></i>
+							<i class="local-icon fimanager flaticon-006-gem"></i>
 						</div>
 					</div>
 				</div>
@@ -462,7 +584,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="page-icon">
-							<i class="loc-icon fimanager flaticon-021-ring"></i>
+							<i class="local-icon fimanager flaticon-021-ring"></i>
 						</div>
 					</div>
 				</div>
@@ -474,7 +596,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="page-icon">
-							<i class="loc-icon fimanager flaticon-019-heart"></i>
+							<i class="local-icon fimanager flaticon-019-heart"></i>
 						</div>
 					</div>
 				</div>
@@ -486,7 +608,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="page-icon">
-							<i class="loc-icon fimanager flaticon-021-ring"></i>
+							<i class="local-icon fimanager flaticon-021-ring"></i>
 						</div>
 					</div>
 				</div>
@@ -500,7 +622,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="page-icon">
-							<i class="loc-icon mirtial flaticon-013-glove"></i>
+							<i class="local-icon mirtial flaticon-013-glove"></i>
 						</div>
 					</div>
 				</div>
@@ -512,7 +634,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="page-icon">
-							<i class="loc-icon mirtial flaticon-050-boxing-shorts"></i>
+							<i class="local-icon mirtial flaticon-050-boxing-shorts"></i>
 						</div>
 					</div>
 				</div>
@@ -524,7 +646,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="page-icon">
-							<i class="loc-icon mirtial flaticon-013-glove"></i>
+							<i class="local-icon mirtial flaticon-013-glove"></i>
 						</div>
 					</div>
 				</div>
@@ -538,7 +660,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="page-icon">
-							<i class="loc-icon fimanager flaticon-004-axe"></i>
+							<i class="local-icon fimanager flaticon-004-axe"></i>
 						</div>
 					</div>
 				</div>
@@ -550,7 +672,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="page-icon">
-							<i class="loc-icon security flaticon-028-safety"></i>
+							<i class="local-icon security flaticon-028-safety"></i>
 						</div>
 					</div>
 				</div>
@@ -562,7 +684,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="page-icon">
-							<i class="loc-icon fimanager flaticon-004-axe"></i>
+							<i class="local-icon fimanager flaticon-004-axe"></i>
 						</div>
 					</div>
 				</div>
@@ -622,10 +744,13 @@
 </div>
 
 <style type="text/css">
-	.loc-icon {
+	.local-icon {
 		font-size: 50px;
 		text-align: center;
+	}
 	
+	.local-dpn {
+		display: none;
 	}
 </style>
 <script type="text/javascript">

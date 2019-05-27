@@ -23,7 +23,7 @@ import com.rauOhon.frontLine.game.service.GameNormalService;
  * 3. 작성시간	: 2019. 5. 4.
  *
  * <pre>
- * 설명			: 
+ * 설명			: 게임 기본 컨트롤러
  * </pre>
  *
  * 	수정일		수정자		수정내용

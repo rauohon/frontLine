@@ -11,6 +11,10 @@
 		SELECT T1.EQ_MCIDNO
 			 , T1.EQ_ITCODE
 			 , IT_TAB.IT_NAME
+             , IT_TAB.IT_PLUS_CNT
+             , IT_TAB.IT_MULTI_CNT
+             , IT_TAB.IT_MINUS_CNT
+             , IT_TAB.IT_DIVI_CNT
 			 , T1.EQ_LOC
 			 , LOC_TAB.CD_NAME
 			 , IT_CD_TAB.CD_CODE

@@ -14,11 +14,13 @@
 			 , T2.IT_CODE
 			 , T2.IT_NAME
 			 , T2.IT_NEEDABILITY
-			 , T2.IT_PLUSABILITY1
-			 , T2.IT_PLUSABILITY2
-			 , T2.IT_PLUSABILITY3
+             , T2.IT_PLUS_CNT
+             , T2.IT_MULTI_CNT
+             , T2.IT_MINUS_CNT
+             , T2.IT_DIVI_CNT
 			 , T2.IT_TYPE_CD
  		     , T2.IT_EQ_LOC
+ 		     , T2.IT_COST * 0.2 AS IT_COST
 		  FROM FNL1009 T1
 		 INNER JOIN FNL1005 T2
 		    ON T1.IV_ITCODE = T2.IT_CODE
