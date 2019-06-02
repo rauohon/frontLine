@@ -13,7 +13,7 @@
 		
 		$("#statReGene").on("click", function () {
 			setCharacterStatus();
-		})
+		});
 		
 		$("#saveBtn").on("click", function () {
 			var errCdMsg = beforeCreateCharacter();
@@ -22,7 +22,7 @@
 			} else {
 				popup.create(errCdMsg[1]);
 			}
-		})
+		});
 		
 		$("#charaNm").on("focusout", function () {
 			var pattern_spc = /[~!@#$%^&*()_+|<>?:{}(\s*)]/g;
@@ -32,7 +32,7 @@
 				val = val.replace(pattern_spc, "");
 				$(this).val(val);
 			}
-		})
+		});
 	})
 	
 	function setSelectedCharaTypeTxt ($radio) {
