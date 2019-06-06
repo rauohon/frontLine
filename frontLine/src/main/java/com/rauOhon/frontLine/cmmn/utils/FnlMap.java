@@ -51,7 +51,7 @@ public class FnlMap {
     	try{
     		result = Integer.parseInt(objResult) ;
         }catch(Exception e){
-        	
+        	log.info("cannot read int data");
         }
     	return result;
     }

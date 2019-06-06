@@ -15,6 +15,7 @@
 			 , MC_IMGNAME
 			 , MC_DEL_YN
 			 , MC_USE_YN
+			 , MC_GOLD
 			 , #{mbIdno} AS MB_IDNO
 		  FROM FNL1002
 		 WHERE MC_MBID = #{mbIdno}

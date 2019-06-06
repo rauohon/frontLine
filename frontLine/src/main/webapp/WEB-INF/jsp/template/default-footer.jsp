@@ -14,7 +14,7 @@
 <script src="/resources/frontFrame/quirk.js"></script>
 
 <form id="frm" name="frm">
-	<input type="hidden" id="pageName" name="pageName" />
+	<input type="hidden" id="pageName" name="pageName" value="" />
 </form>
 
 

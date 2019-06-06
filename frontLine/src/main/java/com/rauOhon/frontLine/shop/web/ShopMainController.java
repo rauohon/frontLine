@@ -63,4 +63,16 @@ public class ShopMainController {
 		return "cmmn/jsonString";
 	}
 	
+	@PostMapping(value = "/itemCheckout.do")
+	public String itemCheckout (ModelMap model, @RequestBody HashMap<Object, Object> hashMap) throws Exception {
+		log.info(">>>>>>>>>>itemCheckout > controller");
+		FnlMap fnlMap = new FnlMap();
+		fnlMap.putAll(hashMap);
+		
+		String result = shopMainService.updateInven(fnlMap);
+		
+		model.addAttribute("jsonString", result);
+		return "cmmn/jsonString";
+	}
+	
 }

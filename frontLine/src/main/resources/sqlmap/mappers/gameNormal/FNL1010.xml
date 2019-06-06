@@ -12,7 +12,6 @@
 		 WHERE EQ_MCIDNO = #{mcIdno}
 		   AND EQ_ITCODE = #{eqItcode}
 	</delete>
-
 	
 	<!--														-->
 	<!-- 업무내용 : 캐릭터-아이템 장착							-->

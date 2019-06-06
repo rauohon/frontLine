@@ -81,7 +81,7 @@
 	function getCharacterDtlInfo () {
 		var params = {
 				abc:"abcd"
-		};
+		}
 		
 		var tranObj = {
 				  url: "/game/getCharacterDtlInfo.do"
@@ -93,7 +93,7 @@
 						errGetCharacterDtlInfo(json);
 					}
 				}
-		};
+		}
 		
 		tran.saction(tranObj);
 		
@@ -371,7 +371,7 @@
 				$("#eqHAND_A").children(".panel").addClass("panel-info-full");
 				$("#eqHAND_B").children(".panel").addClass("panel-info-full");
 				$("#eqHAND_A .panel-heading").html(html);
-				$("#eqHAND_A .panel-heading").html(html);
+				$("#eqHAND_B .panel-heading").html(html);
 			}
 		}
 		
@@ -393,7 +393,17 @@
 						$g_divEqItem.removeClass("panel-info-full");
 						var pre = "<h6 class=\"panel-title\">";
 						var aft = "</h6>"
-						$g_divEqItem.children(".panel-heading").html(pre + $g_divEqItem.children(".panel-heading").html().substring(0,$g_divEqItem.children(0).html().indexOf(":") - 1) + aft);
+						var html = pre + $g_divEqItem.children(".panel-heading").html().substring(0,$g_divEqItem.children(0).html().indexOf(":") - 1) + aft
+						$g_divEqItem.children(".panel-heading").html(html);
+						
+						if (html.indexOf("장갑") > -1) {
+							//A & B 처리
+							$("#eqHAND_A").children(".panel").removeClass("panel-info-full");
+							$("#eqHAND_B").children(".panel").removeClass("panel-info-full");
+							$("#eqHAND_A .panel-heading").html(html);
+							$("#eqHAND_B .panel-heading").html(html);
+						}
+						
 						popup.create("해제되었습니다.");
 					} else {
 						var obj = {
@@ -471,6 +481,13 @@
 							html += data.itName + "<p data-itcode=\"" + itCode + "\"></p>";
 							$("#eq" + eqLoc).children(".panel").addClass("panel-info-full");
 							$("#eq" + eqLoc + " .panel-heading").html(html);
+						} else {
+							var html = "장갑 : " + data.itName + "<p data-itcode=\"" + itCode + "\"></p>";
+							//A & B 처리
+							$("#eqHAND_A").children(".panel").addClass("panel-info-full");
+							$("#eqHAND_B").children(".panel").addClass("panel-info-full");
+							$("#eqHAND_A .panel-heading").html(html);
+							$("#eqHAND_B .panel-heading").html(html);
 						}
 						effectiveEquip(json);
 						popup.create("장착되었습니다.");

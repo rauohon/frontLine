@@ -303,21 +303,48 @@
 	}
 	
 	function sendShopInvoice () {
+		var jsonArray = loc_tableToSjon($("#invoice"));
+		var pageName = "${pageName}";
+		
+		if (jsonArray.length < 1) {
+			popup.create("아이템 선택 내용이 없습니다.");
+		}
+		
+		var params = {
+				checkoutList: jsonArray
+		}
+		
+		var tranObj = {
+				  url: "/shop/itemCheckout.do"
+				, data: params
+				, fn_callback: function (json) {
+					if (json.errorCode > -1) {
+						popup.create("아이템 결제에 성공했습니다.", {
+							loccnfm: "/shop/shopHome.do?pageName=" + pageName
+						});
+					} else {
+						popup.create("아이템 결제에 실패 했습니다.");
+					}
+				}
+		}
+		tran.saction(tranObj);
+	}
+		
+	function loc_tableToSjon ($table) {
 		var jsonArray = [];
 		var jsonEl;
-		
-		$("#invoice").find("tr").each(function (index, item) {
+		$($table).find("tr").each(function (index, item) {
 			jsonEl = {};
 			jsonEl.idx = index;
 			var $itCode = $("#invoice").children().eq(index).attr("id"); 
 			jsonEl.itCode = $itCode.substring($itCode.indexOf("-") + 1, $itCode.length);
 			jsonEl.basCost = $("#invoice").children().eq(index).children().eq(2).html();
 			jsonEl.qnty = $("#invoice").children().eq(index).children().eq(3).children().val();
-			var sellBuy = 1;
+			var sellBuy = 1 + "";
 			var flagText = $("#invoice").children().eq(index).children().eq(4).html().substring(1,3);
 			
-			if (flagText == "판매") {
-				sellBuy = -1;
+			if (flagText == "구입") {
+				sellBuy = -1 + "";
 			}
 			
 			jsonEl.sellBuy = sellBuy;
@@ -325,7 +352,7 @@
 			jsonArray.push(jsonEl);
 		});
 		
-		console.log(jsonArray);
+		return jsonArray;
 	}
 
 </script>

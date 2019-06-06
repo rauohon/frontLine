@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shop.FNL1002">
+	
+	<!--														-->
+	<!-- 업무내용 : 소지금 갱신									-->
+	<!--														-->
+	<update id="updateMyGold" parameterType="fnlMap">
+		/* SQL_id = shop.FNL1002.updateMyGold */
+		UPDATE FNL1002
+		   SET MC_GOLD = #{resultGold}
+		 WHERE MC_IDNO = #{mcIdno}
+	</update>
+</mapper>

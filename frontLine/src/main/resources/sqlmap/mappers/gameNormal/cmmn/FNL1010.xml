@@ -30,5 +30,8 @@
 		   AND IT_CD_TAB.CD_BIG_CODE = 'CD0000000000002'
 		   AND IT_CD_TAB.CD_DEL_YN = 'N'
 		 WHERE T1.EQ_MCIDNO = #{mcIdno}
+		 <if test='itCode != null and itCode != ""'>
+		   AND T1.EQ_ITCODE = #{itCode}
+		 </if>
 	</select>
 </mapper>

@@ -61,4 +61,29 @@ var cmmn = {
 			})
 		}
 	}
+,
+	tableToJson : function ($table) { // 테이블 컬럼 선택 추가(개발중)
+		var jsonArray = [];
+		var jsonEl;
+		$($table).find("tr").each(function (index, item) {
+			jsonEl = {};
+			jsonEl.idx = index;
+			var $itCode = $("#invoice").children().eq(index).attr("id"); 
+			jsonEl.itCode = $itCode.substring($itCode.indexOf("-") + 1, $itCode.length);
+			jsonEl.basCost = $("#invoice").children().eq(index).children().eq(2).html();
+			jsonEl.qnty = $("#invoice").children().eq(index).children().eq(3).children().val();
+			var sellBuy = 1;
+			var flagText = $("#invoice").children().eq(index).children().eq(4).html().substring(1,3);
+			
+			if (flagText == "판매") {
+				sellBuy = -1;
+			}
+			
+			jsonEl.sellBuy = sellBuy;
+			
+			jsonArray.push(jsonEl);
+		});
+		
+		return jsonArray;
+	}
 }

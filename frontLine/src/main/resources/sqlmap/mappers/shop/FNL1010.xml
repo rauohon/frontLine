@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shop.FNL1010">
+
+	<!--														-->
+	<!-- 업무내용 : 캐릭터-아이템 장착 해제						-->
+	<!--														-->
+	<delete id="deleteLiftEquipment" parameterType="fnlMap">
+		/* SQL_id = shop.FNL1010.deleteLiftEquipment */
+		DELETE FROM FNL1010
+		 WHERE EQ_MCIDNO = #{mcIdno}
+		   AND EQ_ITCODE = #{itCode}
+	</delete>
+	
+</mapper>

@@ -22,4 +22,6 @@ public interface ShopMainService {
 	public ModelAndView entrance(int jobCnt, FnlMap fnlMap) throws Exception;
 
 	public String selectShopItemList(FnlMap fnlMap) throws Exception;
+
+	public String updateInven(FnlMap fnlMap) throws Exception;
 }
