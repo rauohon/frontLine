@@ -196,51 +196,53 @@
 		var addHealthPt = 0;
 		
 		$("#charaAbilLoc").html("");
-
-		for (var i = 0; i < equipInfo.length; i++) {
-			var eqCode = equipInfo[i].cdCode;
-			switch (eqCode) {
-				case "AT" :
-					if (cmmn.isEmpty(equipInfo[i].itPlusCnt)) {
-						attckPt = attckPt + attckPt * equipInfo[i].itMultiCnt;
-						addAttackPt += attckPt * equipInfo[i].itMultiCnt;
-					} else {
-						attckPt += equipInfo[i].itPlusCnt;
-						addAttackPt += equipInfo[i].itPlusCnt
-					}
-					break;
-				
-				case "DF" :
-					if (cmmn.isEmpty(equipInfo[i].itPlusCnt)) {
-						defencePt = defencePt + defencePt * equipInfo[i].itMultiCnt;
-						addDefencePt += attckPt * equipInfo[i].itMultiCnt;
-					} else {
-						defencePt += equipInfo[i].itPlusCnt;
-						addDefencePt += equipInfo[i].itPlusCnt;
-					}
+		
+		if (!cmmn.isEmpty(equipInfo) && equipInfo.length != 0) {
+			for (var i = 0; i < equipInfo.length; i++) {
+				var eqCode = equipInfo[i].cdCode;
+				switch (eqCode) {
+					case "AT" :
+						if (cmmn.isEmpty(equipInfo[i].itPlusCnt)) {
+							attckPt = attckPt + attckPt * equipInfo[i].itMultiCnt;
+							addAttackPt += attckPt * equipInfo[i].itMultiCnt;
+						} else {
+							attckPt += equipInfo[i].itPlusCnt;
+							addAttackPt += equipInfo[i].itPlusCnt
+						}
+						break;
 					
-					break;
-				
-				case "AC" :
-					if (cmmn.isEmpty(equipInfo[i].itPlusCnt)) {
-						actionPt = actionPt + actionPt * equipInfo[i].itMultiCnt;
-						addActionPt = actionPt * equipInfo[i].itMultiCnt;
-					} else {
-						actionPt += equipInfo[i].itPlusCnt;
-						addActionPt += equipInfo[i].itPlusCnt;
-					}
+					case "DF" :
+						if (cmmn.isEmpty(equipInfo[i].itPlusCnt)) {
+							defencePt = defencePt + defencePt * equipInfo[i].itMultiCnt;
+							addDefencePt += attckPt * equipInfo[i].itMultiCnt;
+						} else {
+							defencePt += equipInfo[i].itPlusCnt;
+							addDefencePt += equipInfo[i].itPlusCnt;
+						}
+						
+						break;
 					
-					break;
-				case "HP" :
-					if (cmmn.isEmpty(equipInfo[i].itPlusCnt)) {
-						healthPt = healthPt + healthPt * equipInfo[i].itMultiCnt;
-						addHealthPt = healthPt * equipInfo[i].itMultiCnt;
-					} else {
-						healthPt += equipInfo[i].itPlusCnt;
-						addHealthPt += equipInfo[i].itPlusCnt;
-					}
-					
-					break;
+					case "AC" :
+						if (cmmn.isEmpty(equipInfo[i].itPlusCnt)) {
+							actionPt = actionPt + actionPt * equipInfo[i].itMultiCnt;
+							addActionPt = actionPt * equipInfo[i].itMultiCnt;
+						} else {
+							actionPt += equipInfo[i].itPlusCnt;
+							addActionPt += equipInfo[i].itPlusCnt;
+						}
+						
+						break;
+					case "HP" :
+						if (cmmn.isEmpty(equipInfo[i].itPlusCnt)) {
+							healthPt = healthPt + healthPt * equipInfo[i].itMultiCnt;
+							addHealthPt = healthPt * equipInfo[i].itMultiCnt;
+						} else {
+							healthPt += equipInfo[i].itPlusCnt;
+							addHealthPt += equipInfo[i].itPlusCnt;
+						}
+						
+						break;
+				}
 			}
 		}
 		var html = "";
@@ -738,7 +740,6 @@
 								방어구류
 							</div>
 							<div id="armourInven" class="panel-body" style="height: 90%;">
-								머리 어깨 무릎 발 무릎 발
 							</div>
 						</div>
 						<!-- //방어구 창 -->
@@ -748,7 +749,6 @@
 								포션류
 							</div>
 							<div id="potionInven" class="panel-body" style="height: 90%;">
-								머리 어깨 무릎 발 무릎 발
 							</div>
 						</div>
 						<!-- //포션 창 -->

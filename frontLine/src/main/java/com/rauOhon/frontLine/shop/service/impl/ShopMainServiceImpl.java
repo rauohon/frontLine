@@ -179,12 +179,12 @@ public class ShopMainServiceImpl implements ShopMainService{
 							throw new FnlException(errMsg);
 						}
 					}
-					sellCost += itemInfoMap.getInt("itCost") * 0.2 * checkoutMap.getInt("qnty") * buySellFlag;
+					sellCost += itemInfoMap.getInt("itSellCost") * checkoutMap.getInt("qnty") * buySellFlag;
 				} else if (buySellFlag < 0) { // 구매
 					invoiceMap.put("itAmount", checkoutMap.getString("qnty"));
 					cmmnDao.update("shop.FNL1009.updateItemBuy", invoiceMap.getMap());
 					
-					buyCost += itemInfoMap.getInt("itCost") * checkoutMap.getInt("qnty") * buySellFlag;
+					buyCost += itemInfoMap.getInt("itBuyCost") * checkoutMap.getInt("qnty") * buySellFlag;
 				}
 			} else {
 				throw new FnlException(errMsg);

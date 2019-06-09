@@ -163,7 +163,7 @@ public class BattleServiceImpl implements BattleService {
 		
 		// 0. 승리 패배 분기
 		FnlMap updateMap = new FnlMap();
-		int addExp = fnlMap.getInt("addExp");
+		String addExp = fnlMap.getString("addExp");
 		
 		// 1. 경험치 갱신
 		updateMap.put("mcIdno", gameInfo.getString("mcIdno"));
@@ -171,7 +171,7 @@ public class BattleServiceImpl implements BattleService {
 		cmmnDao.update("battle.FNL1002.updateEndBattle", updateMap.getMap());
 		
 		// 2. 아이템 삽입
-		if ("VICTORY".equals("clsf")) {
+		if ("VICTORY".equals(fnlMap.getString("clsf"))) {
 			FnlMap itemMap = null;
 			if (!"".equals(fnlMap.getString("getItemCd"))) {
 				updateMap.put("itCode", fnlMap.getString("getItemCd"));

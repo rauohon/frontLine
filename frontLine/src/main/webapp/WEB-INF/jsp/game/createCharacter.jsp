@@ -179,7 +179,7 @@
 				, data: params
 				, fn_callback: function (json) {
 					if (json.errorCode > -1) {
-						popup.create("캐릭터가 생성되었습니다.", {func:"aftClosePopup"});
+						popup.create("캐릭터가 생성되었습니다.", {cnfmfunc:"aftClosePopup"});
 					} else {
 						popup.create("캐릭터 생성에 실패했습니다.");
 					}

@@ -191,7 +191,7 @@
 		html += "		</tr>";
 		html += "	</thead>";
 		html += "	<tbody>";
-		if (!cmmn.isEmpty(charaInvenList) || charaInvenList.length > 0) {
+		if (!cmmn.isEmpty(charaInvenList) && charaInvenList.length > 0) {
 			for (var i = 0; i <charaInvenList.length; i++) {
 				html += "		<tr id=\"momRow" + charaInvenList[i].ivItcode + "\">";
 				html += "			<td>" + charaInvenList[i].itName + "</td>";
@@ -209,7 +209,13 @@
 				html += "			<td><input id=\"useVal" + charaInvenList[i].ivItcode + "\" type=\"text\" class=\"itemQnty\" placeholder=\"\" value=\"1\"></td>";
 				html += "			<td><button class=\"btn btn-primary btn-quirk btn-stroke\" onclick=\"useItem('" + charaInvenList[i].ivItcode + "')\">사용</button></td>";
 				html += "		</tr>";
-			}			
+			}
+		} else {
+			html += "		<tr>";
+			html += "			<td colspan=\"6\">";
+			html += "				사용가능한 아이템이 없습니다.";
+			html += "			</td>";
+			html += "		</tr>";
 		}
 		html += "	</tbody>";
 		html += "</table>";
@@ -256,6 +262,8 @@
 				$monsHpSlideHandle.css("left", resultPercent + "%");
 
 				if (result < 0) {
+					$monsHpSlide.css("width", "0%");
+					$monsHpSlideHandle.css("left", "0%");
 					$monsInfo.data("hp", 0);
 					$("#monsHpCnt").html(0);
 					$("#monsImg").css("background", "black");
@@ -299,8 +307,8 @@
 					damage = 1;
 				}
 				
-				var result = hp - (damage);
-				console.log(damage);
+				var result = hp - (damage * 30);
+				console.log(damage * 30);
 				var resultPercent = (100 * result) / $("#charaHpBas").html() * 1;
 				$charaHpSlide.css("width", resultPercent + "%");
 				$charaHpSlideHandle.css("left", resultPercent + "%");
@@ -310,7 +318,7 @@
 					$charaInfo.data("hp", 0);
 					$("#charaHpCnt").html(0);
 					// 전투 끝 패배
-					setBattleLog($monsInfo.data("monsnm"), $charaInfo.data("charanm"), damage);
+					setBattleLog($monsInfo.data("monsnm"), $charaInfo.data("charanm"), damage * 30);
 					$("#charaImg").css("background", "black");
 					$("#charaImg").css("opacity", "0.5");
 					battleFinsh("LOSE");
@@ -330,7 +338,7 @@
 					$("#skillListDiv").addClass("loc_display_on");
 					$("#cmmnd-panel").find("button").prop("disabled", false);
 
-					setBattleLog($monsInfo.data("monsnm"), $charaInfo.data("charanm"), damage);
+					setBattleLog($monsInfo.data("monsnm"), $charaInfo.data("charanm"), damage * 30);
 				}
 			}
 			
