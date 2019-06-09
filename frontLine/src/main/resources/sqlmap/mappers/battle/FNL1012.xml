@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="battle.FNL1012">
+
+	<!--														-->
+	<!-- 업무내용 : 몬스터 아이템 조회							-->
+	<!--														-->
+	<select id="selectMoItemInfo" parameterType="fnlMap" resultType="hashmap">
+		/* SQL_id = battle.FNL1012.selectMoItemInfo */
+		SELECT T1.MD_ITCODE AS IT_CODE
+		     , T1.MD_MOCODE AS MO_CODE
+		     , ITEM_TAB.IT_NAME
+		  FROM FNL1012 T1
+		 INNER JOIN FNL1005 ITEM_TAB
+		    ON T1.MD_ITCODE = ITEM_TAB.IT_CODE
+		   AND ITEM_TAB.IT_DEL_YN = 'N'
+		 WHERE T1.MD_MOCODE = #{moCode}
+	</select>
+	
+</mapper>

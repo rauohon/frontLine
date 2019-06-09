@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cmmn.FNL1003">
+
+	<!--														-->
+	<!-- 업무내용 : 캐릭터 상세 정보 조회						-->
+	<!--														-->
+	<select id="selectMonsDtlInfo" parameterType="fnlMap" resultType="hashmap">
+		/* SQL_id = cmmn.FNL1003.selectMonsDtlInfo */
+		SELECT T1.MO_CODE
+		     , T1.MO_NAME
+		     , T1.MO_STR
+		     , T1.MO_INT
+		     , T1.MO_DEX
+		     , T1.MO_CON
+		     , T1.MO_EXP
+		     , T1.MO_GOLD
+		     , T1.MO_IMGLOCATION
+		     , T1.MO_IMGNAME
+		     , T1.MO_FECODE
+		     , FIELD_TAB.FE_NAME
+		     , T1.MO_CDCODE
+		     , CODE_TAB.CD_NAME AS MO_CD_NAME
+		  FROM FNL1003 T1
+		 INNER JOIN FNL1013 FIELD_TAB
+		    ON T1.MO_FECODE = FIELD_TAB.FE_CODE
+		   AND FIELD_TAB.FE_DEL_YN = 'N'
+		 INNER JOIN FNL1006 CODE_TAB
+		    ON T1.MO_CDCODE = CODE_TAB.CD_CODE
+		   AND CODE_TAB.CD_BIG_CODE = 'CD0000000000007'
+		   AND CODE_TAB.CD_DEL_YN = 'N'
+		 WHERE T1.MO_CODE = ${moCode}
+	</select>
+</mapper>

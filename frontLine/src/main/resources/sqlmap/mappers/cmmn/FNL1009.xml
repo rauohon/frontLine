@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="gameNormal.cmmn.FNL1009">
+<mapper namespace="cmmn.FNL1009">
 
 	<!--														-->
 	<!-- 업무내용 : 캐릭터 소지 아이템 정보 조회				-->
 	<!--														-->
 	<select id="selectGameCharaInvenInfo" parameterType="fnlMap" resultType="hashmap">
-		/* SQL_id = gameNormal.cmmn.FNL1009.selectGameCharaInvenInfo */
+		/* SQL_id = cmmn.FNL1009.selectGameCharaInvenInfo */
 		SELECT T1.IV_MCIDNO
 			 , T1.IV_ITCODE
 			 , T1.IV_AMOUNT
@@ -20,13 +20,13 @@
              , T2.IT_DIVI_CNT
 			 , T2.IT_TYPE_CD
  		     , T2.IT_EQ_LOC
- 		     , T2.IT_COST * 0.2 AS IT_COST
+ 		     , T2.IT_SELL_COST
 		  FROM FNL1009 T1
 		 INNER JOIN FNL1005 T2
 		    ON T1.IV_ITCODE = T2.IT_CODE
 		 WHERE T1.IV_MCIDNO = #{mcIdno}
 		<if test='itTypeCd != null and itTypeCd != ""'>
-		   AND T2.IT_TYPE_CD = #{itTypeCd}
+		   AND T2.IT_TYPE_CD LIKE '%' || #{itTypeCd} || '%'
 		</if>
 	</select>
 </mapper>

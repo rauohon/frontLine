@@ -49,7 +49,11 @@ var tran = {
 			
 			that.loading(true);
 			
-			console.log(JSON.stringify(obj.data));
+			var data = obj.data;
+			
+			if (!cmmn.isEmpty(data)) {
+				data = JSON.stringify(obj.data);
+			}
 			
 			if (cmmn.isEmpty(obj.processData)) {
 				console.log("------------");
@@ -63,7 +67,7 @@ var tran = {
 					}
 					, type: DEF_TYPE
 					, timeout: DEF_TIMEOUT
-					, data: JSON.stringify(obj.data)
+					, data: data
 					, async: DEF_ASYNC
 					, success: function(data) {
 						that.callBackSuccess.call(this, obj, data);

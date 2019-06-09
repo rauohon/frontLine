@@ -52,12 +52,34 @@ public class ShopMainServiceImpl implements ShopMainService{
 		
 		switch(jobCnt) {
 			case 0 :
+				mav = shopHome(fnlMap);
 				break;
 		}
 		
 		return mav;
 	}
 	
+	/**
+	 * 처리내용	: 상점 페이지 이동
+	 * @method	: shopHome
+	 * @author	: RAU
+	 * @param	: FnlMap
+	 * @return	: ModelAndView
+	 * @throws Exception 
+	 */
+	private ModelAndView shopHome(FnlMap fnlMap) throws Exception {
+		FnlMap gameInfo = session.selectGameCharaInfo(fnlMap);
+		mav.setViewName("shop/shopHome.tiles");
+		mav.addObject("pageName", fnlMap.getString("pageName"));
+		String battYn = cmmnDao.selectByPk("cmmn.FNL1002.selectBattYn", gameInfo.getMap());
+		
+		if ("Y".equals(battYn)) {
+			throw new FnlException("전투가 완료되지 않았습니다. 전투를 마무리 해주세요");
+		}
+		
+		return mav;
+	}
+
 	/**
 	 * 처리내용	: 상점 판매 아이템, 인벤 아이템 조회
 	 * @method	: selectShopItemList
@@ -91,9 +113,9 @@ public class ShopMainServiceImpl implements ShopMainService{
 				break;
 		}
 		
-		FnlMap charaDtlInfo = cmmnDao.selectOneRow("gameNormal.cmmn.FNL1002.selectGameCharaDtlInfo", gameInfo.getMap());
-		List<FnlMap> sellItemList = cmmnDao.select("gameNormal.cmmn.FNL1005.selectItemInfo", fnlMap.getMap());
-		List<FnlMap> myInvenList = cmmnDao.select("gameNormal.cmmn.FNL1009.selectGameCharaInvenInfo", gameInfo.getMap());
+		FnlMap charaDtlInfo = cmmnDao.selectOneRow("cmmn.FNL1002.selectGameCharaDtlInfo", gameInfo.getMap());
+		List<FnlMap> sellItemList = cmmnDao.select("cmmn.FNL1005.selectItemInfo", fnlMap.getMap());
+		List<FnlMap> myInvenList = cmmnDao.select("cmmn.FNL1009.selectGameCharaInvenInfo", gameInfo.getMap());
 		
 		resultMap.put("charaDtlInfo", charaDtlInfo.getMap());
 		resultMap.put("sellItemList", fnlMap.getSetList(sellItemList));
@@ -128,7 +150,7 @@ public class ShopMainServiceImpl implements ShopMainService{
 			checkoutMap.putAll((LinkedTreeMap<Object, Object>) checkoutList.get(i));
 
 			// 2. 아이템 정보 조회
-			FnlMap itemInfoMap = cmmnDao.selectOneRow("gameNormal.cmmn.FNL1005.selectItemInfo", checkoutMap.getMap());
+			FnlMap itemInfoMap = cmmnDao.selectOneRow("cmmn.FNL1005.selectItemInfo", checkoutMap.getMap());
 			
 			int buySellFlag = checkoutMap.getInt("sellBuy");
 			// 3. 구매/판매 쿼리 실행
@@ -145,7 +167,7 @@ public class ShopMainServiceImpl implements ShopMainService{
 					int sellChk = cmmnDao.selectByCnt("shop.FNL1009.selectItemAmonut", invoiceMap.getMap()); 
 					if (sellChk <= 0) {
 						// 장비여부 체크
-						FnlMap equipMap = cmmnDao.selectOneRow("gameNormal.cmmn.FNL1010.selectGameCharaEquipInfo", invoiceMap.getMap());
+						FnlMap equipMap = cmmnDao.selectOneRow("cmmn.FNL1010.selectGameCharaEquipInfo", invoiceMap.getMap());
 						if (equipMap != null) {
 							int delChk = cmmnDao.delete("shop.FNL1010.deleteLiftEquipment", invoiceMap.getMap());
 							if (delChk > 1) {

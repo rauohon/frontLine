@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="battle.FNL1002">
+	
+	<!--														-->
+	<!-- 업무내용 : 배틀중 상태 갱신							-->
+	<!--														-->
+	<update id="updateBattleState" parameterType="fnlMap">
+		/* SQL_id = battle.FNL1002.updateBattleState */
+		UPDATE FNL1002
+		   SET MC_BATT_YN = #{mcBattYn}
+		 WHERE MC_IDNO = #{mcIdno}
+	</update>
+	
+	<!--														-->
+	<!-- 업무내용 : 배틀중 상태 갱신							-->
+	<!--														-->
+	<update id="updateEndBattle" parameterType="fnlMap">
+		/* SQL_id = battle.FNL1002.updateEndBattle */
+		UPDATE FNL1002
+		   SET MC_NOWEXP = MC_NOWEXP + #{addExp}
+		 WHERE MC_IDNO = #{mcIdno}
+	</update>
+</mapper>

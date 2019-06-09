@@ -15,6 +15,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.rauOhon.frontLine.cmmn.dao.CmmnDao;
+import com.rauOhon.frontLine.cmmn.utils.FnlException;
 import com.rauOhon.frontLine.cmmn.utils.FnlMap;
 import com.rauOhon.frontLine.cmmn.utils.ResultVO;
 import com.rauOhon.frontLine.cmmn.utils.SessionManager;
@@ -57,7 +58,7 @@ public class GameNormalServiceImpl implements GameNormalService {
 				break;
 			
 			case 1 :
-				
+				mav = selectCharacterInfo(fnlMap);
 				break;
 				
 			default :
@@ -87,7 +88,7 @@ public class GameNormalServiceImpl implements GameNormalService {
 		mav.addObject("statusCmmnCd", statusCmmnCd);
 		
 		if (gameInfo != null) {
-			FnlMap charaDtlInfo = cmmnDao.selectOneRow("gameNormal.cmmn.FNL1002.selectGameCharaDtlInfo", gameInfo.getMap());
+			FnlMap charaDtlInfo = cmmnDao.selectOneRow("cmmn.FNL1002.selectGameCharaDtlInfo", gameInfo.getMap());
 			String charaInfo = "( 레벨 : " + charaDtlInfo.getString("mcLevel");
 			charaInfo += " | 경험치 : " + charaDtlInfo.getString("mcNowexp") + "%";
 			charaInfo += " (" + charaDtlInfo.getString("mcNowexp") + " / " + charaDtlInfo.getString("reqExp") + ")달성 )";
@@ -101,6 +102,26 @@ public class GameNormalServiceImpl implements GameNormalService {
 		return mav;
 	}
 
+	/**
+	 * 처리내용	: 캐릭터 정보 페이지 이동
+	 * @method	: selectCharacterInfo
+	 * @author	: RAU
+	 * @param	: FnlMap
+	 * @return	: ModelAndView
+	 * @throws Exception 
+	 */
+	private ModelAndView selectCharacterInfo(FnlMap fnlMap) throws Exception {
+		FnlMap gameInfo = session.selectGameCharaInfo(fnlMap);
+		mav.setViewName("game/characterInfo.tiles");
+		String battYn = cmmnDao.selectByPk("cmmn.FNL1002.selectBattYn", gameInfo.getMap());
+		
+		if ("Y".equals(battYn)) {
+			throw new FnlException("전투가 완료되지 않았습니다. 전투를 마무리 해주세요");
+		}
+		
+		return mav;
+	}
+	
 	// 게임 캐릭터 idno 생성
 	private String getMcIdno(FnlMap fnlMap) throws Exception {
 		return (String) cmmnDao.selectByPk("gameNormal.FNL1002.getMcIdno", fnlMap.getMap());
@@ -279,18 +300,18 @@ public class GameNormalServiceImpl implements GameNormalService {
 		sessionMap.putAll((Map<Object, Object>) session.getAttribute("sessionId"));
 
 		// 1. 캐릭터 상세 정보 조회
-		FnlMap charaDtlInfo = cmmnDao.selectOneRow("gameNormal.cmmn.FNL1002.selectGameCharaDtlInfo", gameInfo.getMap());
+		FnlMap charaDtlInfo = cmmnDao.selectOneRow("cmmn.FNL1002.selectGameCharaDtlInfo", gameInfo.getMap());
 		
 		// 2. 캐릭터 소지 아이템 정보 조회
 		gameInfo.put("itTypeCd","AT");
-		List<FnlMap> weaponInvenList = cmmnDao.select("gameNormal.cmmn.FNL1009.selectGameCharaInvenInfo", gameInfo.getMap());
+		List<FnlMap> weaponInvenList = cmmnDao.select("cmmn.FNL1009.selectGameCharaInvenInfo", gameInfo.getMap());
 		gameInfo.put("itTypeCd","DF");
-		List<FnlMap> armourInvenList = cmmnDao.select("gameNormal.cmmn.FNL1009.selectGameCharaInvenInfo", gameInfo.getMap());
+		List<FnlMap> armourInvenList = cmmnDao.select("cmmn.FNL1009.selectGameCharaInvenInfo", gameInfo.getMap());
 		gameInfo.put("itTypeCd","PO");
-		List<FnlMap> potionInvenList = cmmnDao.select("gameNormal.cmmn.FNL1009.selectGameCharaInvenInfo", gameInfo.getMap());
+		List<FnlMap> potionInvenList = cmmnDao.select("cmmn.FNL1009.selectGameCharaInvenInfo", gameInfo.getMap());
 		
 		// 3. 캐릭터 장착 아이템 정보 조회
-		List<FnlMap> charaEquipInfo = cmmnDao.select("gameNormal.cmmn.FNL1010.selectGameCharaEquipInfo", gameInfo.getMap());
+		List<FnlMap> charaEquipInfo = cmmnDao.select("cmmn.FNL1010.selectGameCharaEquipInfo", gameInfo.getMap());
 		
 		FnlMap resultMap = new FnlMap();
 		
@@ -328,9 +349,9 @@ public class GameNormalServiceImpl implements GameNormalService {
 		} else {
 
 			// 2. 캐릭터 상세 정보 조회
-			FnlMap charaDtlInfo = cmmnDao.selectOneRow("gameNormal.cmmn.FNL1002.selectGameCharaDtlInfo", gameInfo.getMap());
+			FnlMap charaDtlInfo = cmmnDao.selectOneRow("cmmn.FNL1002.selectGameCharaDtlInfo", gameInfo.getMap());
 			// 3. 캐릭터 장착 아이템 정보 조회
-			List<FnlMap> charaEquipInfo = cmmnDao.select("gameNormal.cmmn.FNL1010.selectGameCharaEquipInfo", gameInfo.getMap());
+			List<FnlMap> charaEquipInfo = cmmnDao.select("cmmn.FNL1010.selectGameCharaEquipInfo", gameInfo.getMap());
 			
 			resultMap.put("charaDtlInfo", charaDtlInfo.getMap());
 			resultMap.put("charaEquipInfo", fnlMap.getSetList(charaEquipInfo));
@@ -365,14 +386,14 @@ public class GameNormalServiceImpl implements GameNormalService {
 			vo.setErrorMsg("장비 장착 실패");
 		} else {
 			// 1. 장착아이템 정보 조회
-			List<FnlMap> tempList = cmmnDao.select("gameNormal.cmmn.FNL1005.selectItemInfo", fnlMap.getMap());
+			List<FnlMap> tempList = cmmnDao.select("cmmn.FNL1005.selectItemInfo", fnlMap.getMap());
 			String itName = tempList.get(0).getString("itName");
 			resultMap.put("itName", itName);
 			
 			// 2. 캐릭터 상세 정보 조회
-			FnlMap charaDtlInfo = cmmnDao.selectOneRow("gameNormal.cmmn.FNL1002.selectGameCharaDtlInfo", gameInfo.getMap());
+			FnlMap charaDtlInfo = cmmnDao.selectOneRow("cmmn.FNL1002.selectGameCharaDtlInfo", gameInfo.getMap());
 			// 3. 캐릭터 장착 아이템 정보 조회
-			List<FnlMap> charaEquipInfo = cmmnDao.select("gameNormal.cmmn.FNL1010.selectGameCharaEquipInfo", gameInfo.getMap());
+			List<FnlMap> charaEquipInfo = cmmnDao.select("cmmn.FNL1010.selectGameCharaEquipInfo", gameInfo.getMap());
 			
 			resultMap.put("charaDtlInfo", charaDtlInfo.getMap());
 			resultMap.put("charaEquipInfo", fnlMap.getSetList(charaEquipInfo));

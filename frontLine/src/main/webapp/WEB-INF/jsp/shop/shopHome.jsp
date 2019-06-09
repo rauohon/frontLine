@@ -155,10 +155,10 @@
 		html += "<table class=\"table table-bordered nomargin table-hover table-striped-col\">";
 		html += "	<colgroup>";
 		html += "		<col style=\"width:5%;\">";
-		html += "		<col style=\"width:40%;\">";
-		html += "		<col style=\"width:20%;\">";
-		html += "		<col style=\"width:20%;\">";
-		html += "		<col style=\"width:10%;\">";
+		html += "		<col style=\"width:34%;\">";
+		html += "		<col style=\"width:18%;\">";
+		html += "		<col style=\"width:18%;\">";
+		html += "		<col style=\"width:25%;\">";
 		html += "	</colgroup>";
 		html += "	<thead>";
 		html += "		<tr>";
@@ -179,32 +179,34 @@
 		html += "		</tr>";
 		html += "	</thead>";
 		html += "	<tbody>";
-		for (var i = 0; i < itemList.length; i++) {
-			html += "		<tr>";
-			html += "			<td class=\"chk_item\">";
-//	 		html += "				<label class=\"ckbox ckbox-primary\">";
-			html += "					<input type=\"checkbox\">";
-//			html += "					<span></span>";
-//	 		html += "				</label>";
-			html += "			</td>";
-			if (flag == "shop") {
-				html += "			<td data-subject=\"" + flag + "\" data-itemcd=\"" + itemList[i].itCode + "\">" + itemList[i].itName + "</td>";
-			} else {
-				html += "			<td data-subject=\"" + flag + "\" data-itemcd=\"" + itemList[i].ivItcode + "\">" + itemList[i].itName + "</td>";
+		if (!cmmn.isEmpty(itemList) && itemList.length != 0) {
+			for (var i = 0; i < itemList.length; i++) {
+				html += "		<tr>";
+				html += "			<td class=\"chk_item\">";
+	//	 		html += "				<label class=\"ckbox ckbox-primary\">";
+				html += "					<input type=\"checkbox\">";
+	//			html += "					<span></span>";
+	//	 		html += "				</label>";
+				html += "			</td>";
+				if (flag == "shop") {
+					html += "			<td data-subject=\"" + flag + "\" data-itemcd=\"" + itemList[i].itCode + "\">" + itemList[i].itName + "</td>";
+				} else {
+					html += "			<td data-subject=\"" + flag + "\" data-itemcd=\"" + itemList[i].ivItcode + "\">" + itemList[i].itName + "</td>";
+				}
+				if (cmmn.isEmpty(itemList[i].itPlusCnt) || 0 == itemList[i].itPlusCnt) {
+					html += "			<td> x" + itemList[i].itMultiCnt + "</td>";
+				} else {
+					html += "			<td> +" + itemList[i].itPlusCnt + "</td>";
+				}
+				if (flag == "shop") {
+					html += "			<td>" + itemList[i].itBuyCost + "</td>";
+					html += "			<td><input class=\"itAmount\" data-flag=\"shop\" type=\"text\" value=\"1\"></td>";
+				} else {
+					html += "			<td>" + itemList[i].itSellCost + "</td>";
+					html += "			<td><input class=\"itAmount\" data-flag=\"inven\" type=\"text\" data-maxamount=\"" + itemList[i].ivAmount + "\" value=\"" + itemList[i].ivAmount + "\"></td>";
+				}
+				html += "		</tr>";
 			}
-			if (cmmn.isEmpty(itemList[i].itPlusCnt)) {
-				html += "			<td> x" + itemList[i].itMultiCnt + "</td>";
-			} else {
-				html += "			<td> +" + itemList[i].itPlusCnt + "</td>";
-			}
-			if (flag == "shop") {
-				html += "			<td>" + itemList[i].itCost + "</td>";
-				html += "			<td><input class=\"itAmount\" data-flag=\"shop\" type=\"text\" value=\"1\"></td>";
-			} else {
-				html += "			<td>" + itemList[i].itCost + "</td>";
-				html += "			<td><input class=\"itAmount\" data-flag=\"inven\" type=\"text\" data-maxamount=\"" + itemList[i].ivAmount + "\" value=\"" + itemList[i].ivAmount + "\"></td>";
-			}
-			html += "		</tr>";
 		}
 		html += "	</tbody>";
 		html += "</table>";
@@ -306,8 +308,9 @@
 		var jsonArray = loc_tableToSjon($("#invoice"));
 		var pageName = "${pageName}";
 		
-		if (jsonArray.length < 1) {
+		if (jsonArray.length < 1 || cmmn.isEmpty(jsonArray)) {
 			popup.create("아이템 선택 내용이 없습니다.");
+			return false;
 		}
 		
 		var params = {

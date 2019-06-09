@@ -20,20 +20,23 @@
 				</div>
 				<div class="panel-body">
 					<h2>
-						A new admin template has been released by <span
-							class="text-primary">ThemePixels</span> with a name <span
-							class="text-success">Quirk</span> is now live and available for
-						purchase!
+						우리 서비스가 이제 막 시작했습니다.
 					</h2>
 					<h4>
-						Explore this new template and see the beauty of Quirk! <a href="">Take
-							a Tour!</a>
+						서비스의 자세한 내용이 이곳에 들어갑니다.<br>
+						서비스의 자세한 내용이 이곳에 들어갑니다.<br>
+						서비스의 자세한 내용이 이곳에 들어갑니다.<br>
+						서비스의 자세한 내용이 이곳에 들어갑니다.<br>
+						서비스의 자세한 내용이 이곳에 들어갑니다.<br>
+						서비스의 자세한 내용이 이곳에 들어갑니다.<br>
+						서비스의 자세한 내용이 이곳에 들어갑니다.<br>
+						서비스의 자세한 내용이 이곳에 들어갑니다.<br>
 					</h4>
 				</div>
 			</div>
 			<!-- panel -->
 
-			<div class="panel panel-site-traffic">
+			<!-- <div class="panel panel-site-traffic">
 				<div class="panel-heading">
 					<ul class="panel-options">
 						<li><a><i class="fa fa-refresh"></i></a></li>
@@ -65,9 +68,9 @@
 							</table>
 						</div>
 				</div>
-				<!-- panel-body -->
+				panel-body
 			</div>
-			<!-- panel -->
+			panel
 			
 			<div class="panel panel-site-traffic">
 				<div class="panel-heading">
@@ -101,9 +104,9 @@
 							</table>
 						</div>
 				</div>
-				<!-- panel-body -->
+				panel-body
 			</div>
-			<!-- panel -->
+			panel
 			
 			<div class="panel col-md-9">
 				<div class="panel-heading">
@@ -137,8 +140,8 @@
 							</table>
 						</div>
 				</div>
-				<!-- panel-body -->
-			</div>
+				panel-body
+			</div> -->
 			<!-- panel -->
 		</div>
 		<!-- row -->

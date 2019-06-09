@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="gameNormal.cmmn.FNL1005">
+<mapper namespace="cmmn.FNL1005">
 
 	<!--														-->
 	<!-- 업무내용 : 아이템 정보 조회							-->
 	<!--														-->
 	<select id="selectItemInfo" parameterType="fnlMap" resultType="hashmap">
-		/* SQL_id = gameNormal.cmmn.FNL1005.selectItemInfo */
+		/* SQL_id = cmmn.FNL1005.selectItemInfo */
 		SELECT IT_CODE
 			 , IT_NAME
 			 , IT_NEEDABILITY
@@ -22,14 +22,15 @@
 			 , IT_CHNG_DATE
 			 , IT_TYPE_CD
 			 , IT_EQ_LOC
-			 , IT_COST
+			 , IT_BUY_COST
+			 , IT_SELL_COST
 		  FROM FNL1005
 		 WHERE 1 = 1 
 		 <if test='itCode != null and itCode != ""'>
 		   AND IT_CODE = #{itCode}
 		 </if>
 		 <if test='itTypeCd != null and itTypeCd != ""'>
-		   AND IT_TYPE_CD = #{itTypeCd}
+		   AND IT_TYPE_CD LIKE '%' || #{itTypeCd} || '%'
 		 </if>
 		 <if test='itSellYn != null and itSellYn != ""'>
 		   AND IT_SELL_YN = #{itSellYn}

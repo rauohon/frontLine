@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="gameNormal.cmmn.FNL1002">
+<mapper namespace="cmmn.FNL1002">
 
 	<!--														-->
 	<!-- 업무내용 : 세션 저장 정보 조회							-->
 	<!--														-->
 	<select id="selectGameInfo" parameterType="fnlMap" resultType="hashmap">
-		/* SQL_id = gameNormal.cmmn.FNL1002.selectGameInfo */
+		/* SQL_id = cmmn.FNL1002.selectGameInfo */
 		SELECT MC_IDNO
 			 , MC_NAME
 			 , MC_MBID
@@ -27,7 +27,7 @@
 	<!-- 업무내용 : 캐릭터 상세 정보 조회						-->
 	<!--														-->
 	<select id="selectGameCharaDtlInfo" parameterType="fnlMap" resultType="hashmap">
-		/* SQL_id = gameNormal.cmmn.FNL1002.selectGameCharaDtlInfo */
+		/* SQL_id = cmmn.FNL1002.selectGameCharaDtlInfo */
 		SELECT T1.MC_IDNO
 		     , T1.MC_MBID
 		     , T1.MC_NAME
@@ -56,5 +56,15 @@
 		 WHERE T1.MC_DEL_YN = 'N'
 		   AND T1.MC_USE_YN = 'Y'
 		   AND T1.MC_IDNO = #{mcIdno}
+	</select>	
+	
+	<!--														-->
+	<!-- 업무내용 : 캐릭터 전투중 여부 조회						-->
+	<!--														-->
+	<select id="selectBattYn" parameterType="fnlMap" resultType="String">
+		/* SQL_id = cmmn.FNL1002.selectBattYn */
+		SELECT MC_BATT_YN
+		  FROM FNL1002
+		 WHERE MC_IDNO = #{mcIdno}
 	</select>
 </mapper>

@@ -8,6 +8,11 @@
 			$("#frm").submit();
 		});
 		
+		$("#dungeon").on("click", function () {
+			$("#frm").attr("action", "/battle/dungeonPage.do");
+			$("#frm").submit();
+		});
+		
 		$(".shop").on("click", function () {
 			var trgtId = $(this).attr("id");
 			
@@ -27,7 +32,7 @@
 	<div class="contentpanel">
 		<div class="row">
 			<div class="col-sm-12">
-				<div id="myCharacterInfo" class="panel" onClick="javascript:void(0)">
+				<div id="myCharacterInfo" class="panel">
 					<a>
 						<div class="panel-heading">
 							<h4 class="panel-title">캐릭터정보</h4>
@@ -44,7 +49,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
-				<div class="panel">
+				<div id="dungeon" class="panel">
 					<div class="panel-heading">
 						<h4 class="panel-title">던전</h4>
 					</div>

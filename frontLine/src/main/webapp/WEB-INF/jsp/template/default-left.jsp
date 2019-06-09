@@ -1,4 +1,4 @@
-F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <div class="leftpanel">
 	<div class="leftpanelinner">
 
@@ -107,7 +107,7 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 							<span>Game Play</span>
 						</a>
 					</li>
-					<li class="nav-parent">
+					<!-- <li class="nav-parent">
 						<a>
 							<i class="fa fa-th-list"></i>
 							<span>Boards</span>
@@ -117,7 +117,7 @@ F<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 							<li><a href="data-tables.html">자유게시판</a></li>
 							<li><a href="data-tables.html">게시판</a></li>
 						</ul>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 			<!-- tab-pane -->

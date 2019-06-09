@@ -52,7 +52,7 @@ public class GameHomeController {
 	
 	@PostMapping(value = "/createCharacter.do")
 	public String createCharacter (ModelMap model, @RequestBody HashMap<Object, Object> hashMap) throws Exception {
-		log.info(">>>>>>>>>>gameHome > controller");
+		log.info(">>>>>>>>>>createCharacter > controller");
 		FnlMap fnlMap = new FnlMap();
 		fnlMap.putAll(hashMap);
 		
@@ -66,14 +66,15 @@ public class GameHomeController {
 	@GetMapping(value = "/myCharacterInfo.do")
 	public ModelAndView myCharacterInfo (FnlMap fnlMap) throws Exception {
 		log.info(">>>>>>>>>>myCharacterInfo > controller");
-		mav.setViewName("game/characterInfo.tiles");
+		
+		mav = gameNormalService.entrance(1, fnlMap);
 		
 		return mav;
 	}
 	
 	@PostMapping(value = "/getCharacterDtlInfo.do")
-	public String getCharacterDtlInfo(ModelMap model, @RequestBody HashMap<Object, Object> hashMap) throws Exception {
-		log.info(">>>>>>>>>>gameHome > controller");
+	public String getCharacterDtlInfo (ModelMap model, @RequestBody HashMap<Object, Object> hashMap) throws Exception {
+		log.info(">>>>>>>>>>getCharacterDtlInfo > controller");
 		FnlMap fnlMap = new FnlMap();
 		fnlMap.putAll(hashMap);
 		
@@ -85,8 +86,8 @@ public class GameHomeController {
 	}
 	
 	@PostMapping(value = "/liftEquipment.do") 
-	public String liftEquipment(ModelMap model, @RequestBody HashMap<Object, Object> hashMap) throws Exception {
-		log.info(">>>>>>>>>>gameHome > controller");
+	public String liftEquipment (ModelMap model, @RequestBody HashMap<Object, Object> hashMap) throws Exception {
+		log.info(">>>>>>>>>>liftEquipment > controller");
 		FnlMap fnlMap = new FnlMap();
 		fnlMap.putAll(hashMap);
 		
@@ -98,8 +99,8 @@ public class GameHomeController {
 	}
 	
 	@PostMapping(value = "/equipItem.do") 
-	public String equipItem(ModelMap model, @RequestBody HashMap<Object, Object> hashMap) throws Exception {
-		log.info(">>>>>>>>>>gameHome > controller");
+	public String equipItem (ModelMap model, @RequestBody HashMap<Object, Object> hashMap) throws Exception {
+		log.info(">>>>>>>>>>equipItem > controller");
 		FnlMap fnlMap = new FnlMap();
 		fnlMap.putAll(hashMap);
 		

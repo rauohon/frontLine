@@ -83,7 +83,7 @@ public class SessionManager {
 		sessionMap.putAll((Map<Object, Object>) this.getAttribute("sessionId"));
 		fnlMap.put("mbIdno", sessionMap.getString("mbIdno"));
 		
-		gameInfo = cmmnDao.selectOneRow("gameNormal.cmmn.FNL1002.selectGameInfo", fnlMap.getMap());
+		gameInfo = cmmnDao.selectOneRow("cmmn.FNL1002.selectGameInfo", fnlMap.getMap());
 		
 		return gameInfo;
 	}

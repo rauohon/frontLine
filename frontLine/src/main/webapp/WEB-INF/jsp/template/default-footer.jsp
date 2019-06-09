@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <script src="/resources/lib/jquery-ui/jquery-ui.js"></script>
+<script src="/resources/lib/jqueryui-touch-punch/jquery.ui.touch-punch.js"></script>
 <script src="/resources/lib/bootstrap/js/bootstrap.js"></script>
 <script src="/resources/lib/jquery-toggles/toggles.js"></script>
 
 <script src="/resources/lib/raphael/raphael.js"></script>
-
 <script src="/resources/lib/flot/jquery.flot.js"></script>
 <script src="/resources/lib/flot/jquery.flot.resize.js"></script>
 <script src="/resources/lib/flot-spline/jquery.flot.spline.js"></script>
@@ -38,4 +38,5 @@
 			header.pageSubmitFn("main");	
 		});
 	})
+	
 </script>

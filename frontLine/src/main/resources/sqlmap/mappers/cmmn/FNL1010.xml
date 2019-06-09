@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
 						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="gameNormal.cmmn.FNL1010">
+<mapper namespace="cmmn.FNL1010">
 
 	<!--														-->
 	<!-- 업무내용 : 캐릭터 착용 아이템 정보 조회				-->
 	<!--														-->
 	<select id="selectGameCharaEquipInfo" parameterType="fnlMap" resultType="hashmap">
-		/* SQL_id = gameNormal.cmmn.FNL1010.selectGameCharaEquipInfo */
+		/* SQL_id = cmmn.FNL1010.selectGameCharaEquipInfo */
 		SELECT T1.EQ_MCIDNO
 			 , T1.EQ_ITCODE
 			 , IT_TAB.IT_NAME

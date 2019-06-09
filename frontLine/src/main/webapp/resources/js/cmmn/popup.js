@@ -52,7 +52,7 @@ var popup = {
 			}
 		}
 		popupHtml += "			<div class=\"panel-body\">";
-		popupHtml += "				<p><strong>" + msg + "<strong></p>";
+		popupHtml += "				<p><strong>" + msg + "</strong></p>";
 		popupHtml += "				<div class=\"popup_btn\">";
 		
 		if (!cmmn.isEmpty(obj)) {

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="battle.FNL1009">
+
+	<!--														-->
+	<!-- 업무내용 : 전투 종료 후 아이템 지급					-->
+	<!--														-->
+	<update id="updateEndBattleItem" parameterType="fnlMap">
+		/* SQL_id = battle.FNL1009.updateEndBattleItem */
+		 MERGE INTO FNL1009 S
+		 USING DUAL
+			ON (S.IV_MCIDNO = #{mcIdno} AND S.IV_ITCODE = #{itCode})
+		  WHEN MATCHED THEN
+		    UPDATE SET S.IV_AMOUNT = S.IV_AMOUNT + #{itAmount}
+		  WHEN NOT MATCHED THEN
+			INSERT
+			(
+				   IV_MCIDNO
+				 , IV_ITCODE
+				 , IV_AMOUNT
+			)
+			VALUES
+			(
+				   #{mcIdno}
+				 , #{itCode}
+				 , #{itAmount}
+			)
+	</update>
+
+	<!--														-->
+	<!-- 업무내용 : 전투 중 아이템 사용							-->
+	<!--														-->
+	<update id="updateUseItem" parameterType="fnlMap">
+		/* SQL_id = battle.FNL1009.updateUseItem */
+		UPDATE FNL1009
+		   SET IV_AMOUNT = #{ivAmount}
+		 WHERE IV_MCIDNO = #{mcIdno}
+		   AND IV_ITCODE = #{itCode}
+	</update>
+	
+	<!--														-->
+	<!-- 업무내용 : 전투 중 아이템 사용 후 0 이면 제거			-->
+	<!--														-->
+	<update id="deleteUseItem" parameterType="fnlMap">
+		/* SQL_id = battle.FNL1009.deleteUseItem */
+		DELETE FROM FNL1009
+		 WHERE IV_MCIDNO = #{mcIdno}
+		   AND IV_ITCODE = #{itCode}
+	</update>
+	
+</mapper>

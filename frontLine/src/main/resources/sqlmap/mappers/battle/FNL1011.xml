@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="battle.FNL1011">
+
+	<!--														-->
+	<!-- 업무내용 : 몬스터 스킬 조회							-->
+	<!--														-->
+	<select id="selectMoSkillInfo" parameterType="fnlMap" resultType="hashmap">
+		/* SQL_id = battle.FNL1011.selectMoSkillInfo */
+		SELECT T1.MS_MOCODE AS MO_CODE
+		     , T1.MS_SKCODE
+		     , SKILL_TAB.SK_NAME
+		     , SKILL_TAB.SK_DAMAGE
+		     , SKILL_TAB.SK_HEAL
+		     , SKILL_TAB.SK_DEFENSE
+		     , SKILL_TAB.SK_AP
+		  FROM FNL1011 T1
+		 INNER JOIN FNL1004 SKILL_TAB
+		    ON T1.MS_SKCODE = SKILL_TAB.SK_CODE
+		   AND SKILL_TAB.SK_DEL_YN = 'N'
+		   AND SKILL_TAB.SK_CLSF = 'MOSK'
+		 WHERE T1.MS_MOCODE = #{moCode}
+	</select>
+	
+</mapper>

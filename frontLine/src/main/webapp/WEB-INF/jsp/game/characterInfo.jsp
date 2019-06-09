@@ -80,7 +80,7 @@
 	
 	function getCharacterDtlInfo () {
 		var params = {
-				abc:"abcd"
+				abc:"characterInfo"
 		}
 		
 		var tranObj = {
@@ -130,10 +130,10 @@
 		html += "			<th>이름</th>";
 		html += "			<td>" + dtlInfo.mcLevel + "</td>";
 		html += "		</tr>";
-		html += "		<tr>";
+/* 		html += "		<tr>";
 		html += "			<th>직업</th>";
 		html += "			<td>" + dtlInfo.jobName + "</td>";
-		html += "		</tr>";
+		html += "		</tr>"; */
 		html += "		<tr>";
 		html += "			<th>레벨</th>";
 		html += "			<td>" + dtlInfo.mcLevel + "</td>";
@@ -185,10 +185,10 @@
 	}
 	
 	function randerAbilInfo (dtlInfo, equipInfo) { // 캐릭터 능력치 셋팅
-		var attckPt = Math.round((dtlInfo.mcStr + dtlInfo.mcDex/2 + dtlInfo.mcCon) * 2);
-		var defencePt = (dtlInfo.mcStr + dtlInfo.mcCon) * 2;
-		var actionPt = (Math.round(dtlInfo.mcStr/2) + dtlInfo.mcCon) * 3;
-		var healthPt = (dtlInfo.mcStr*4 + dtlInfo.mcCon*6) * 2;
+		var attckPt = fn_attckPtCalc(dtlInfo.mcStr, dtlInfo.mcDex, dtlInfo.mcCon);
+		var defencePt = fn_defencePtCalc(dtlInfo.mcStr, dtlInfo.mcCon);
+		var actionPt = fn_actionPtCalc(dtlInfo.mcStr, dtlInfo.mcCon);
+		var healthPt = fn_hpCalc(dtlInfo.mcStr, dtlInfo.mcCon);
 		
 		var addAttackPt = 0;
 		var addDefencePt = 0;

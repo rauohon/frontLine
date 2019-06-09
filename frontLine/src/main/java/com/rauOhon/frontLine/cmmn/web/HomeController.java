@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.rauOhon.frontLine.cmmn.utils.FnlException;
 import com.rauOhon.frontLine.cmmn.utils.FnlMap;
 import com.rauOhon.frontLine.user.service.UserService;
 
@@ -56,6 +57,15 @@ public class HomeController {
 		log.info(">>>>>>>>>>lgon > controller");
 		mav=userService.entrance(1, fnlMap);
 		return mav;
+	}
+
+	@GetMapping(value = "/exception.do")
+	public String exception (FnlMap fnlMap) throws Exception {
+		log.info(">>>>>>>>>>exception : {}", fnlMap.getMap());
+		if (!"abcd".equals(fnlMap.getString("asdf"))) {
+			throw new FnlException("에러가 발생했어요. 히히");
+		}
+		return "template/error.lgon_signUp";
 	}
 	
 }

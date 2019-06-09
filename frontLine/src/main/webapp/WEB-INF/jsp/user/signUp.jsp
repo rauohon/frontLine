@@ -1,31 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<!--<link rel="shortcut icon" href="../images/favicon.png" type="image/png">-->
-
-<title>Quirk Responsive Admin Templates</title>
-
-<link rel="stylesheet" href="/resources/lib/fontawesome/css/font-awesome.css">
-<link rel="stylesheet" href="/resources/lib/select2/select2.css">
-
-<link rel="stylesheet" href="/resources/css/quirk.css">
-
-<script src="/resources/lib/modernizr/modernizr.js"></script>
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-  <script src="../lib/html5shiv/html5shiv.js"></script>
-  <script src="../lib/respond/respond.src.js"></script>
-  <![endif]-->
-</head>
-
-<body class="signwrapper">
 
 	<div class="sign-overlay"></div>
 	<div class="signpanel"></div>
@@ -35,14 +9,14 @@
 			<div class="col-sm-5">
 				<div class="panel">
 					<div class="panel-heading">
-						<h1>Quirk</h1>
-						<h4 class="panel-title">Create an Account!</h4>
+						<h1>Front-Line</h1>
+						<h4 class="panel-title" style="color: gray;">회원가입 해요</h4>
 					</div>
 					<div class="panel-body">
-						<button class="btn btn-primary btn-quirk btn-fb btn-block invisible">
+						<!-- <button class="btn btn-primary btn-quirk btn-fb btn-block invisible">
 							Sign Up Using Facebook
 						</button>
-						<div class="or">or</div>
+						<div class="or">or</div> -->
 						<form id='valid' action="signUp.do" method="post">
 							<div class="form-group mb15">
 								<input type="text" name="mbId" class="form-control" placeholder="ID">
@@ -55,6 +29,9 @@
 								<button class="btn btn-success btn-quirk btn-block">
 									가입하기
 								</button>
+					<hr class="darken">
+								<a href="lgonPage.do"
+									class="btn btn-default btn-quirk btn-stroke btn-stroke-thin btn-block btn-sign">이미 회원이면 로그인 하러 가자!</a>
 							</div>
 						</form>
 					</div>
@@ -65,36 +42,34 @@
 			<!-- col-sm-5 -->
 			<div class="col-sm-7">
 				<div class="sign-sidebar">
-					<h3 class="signtitle mb20">Two Good Reasons to Love Quirk</h3>
-					<p>When it comes to websites or apps, one of the first
-						impression you consider is the design. It needs to be high quality
-						enough otherwise you will lose potential users due to bad design.</p>
-					<p>Below are some of the reasons why you love Quirk.</p>
+					<h3 class="signtitle mb20">Front-Line의 약관</h3>
+					<p>
+						Front-Line에서 지켜야하는 약속이 있습니다.<br>
+						Front-Line에서 지켜야하는 약속이 있습니다.<br>
+						Front-Line에서 지켜야하는 약속이 있습니다.<br> 
+					</p>
 
 					<br>
 
-					<h4 class="reason">1. Attractive</h4>
-					<p>When your website or app is attractive to use, your users
-						will not simply be using it, they’ll look forward to using it.
-						This means that you should fashion the look and feel of your
-						interface for your users.</p>
+					<h4 class="reason">1. 개인정보 사용 동의</h4>
+					<p>
+						회원 가입하면 개인정보 사용에 동의한다는 내용이 있습니다.<br>
+						회원 가입하면 개인정보 사용에 동의한다는 내용이 있습니다.<br>
+						회원 가입하면 개인정보 사용에 동의한다는 내용이 있습니다.<br>
+						회원 가입하면 개인정보 사용에 동의한다는 내용이 있습니다.<br>
+					</p>
 
 					<br>
 
-					<h4 class="reason">2. Responsive</h4>
-					<p>Responsive Web design is the approach that suggests that
-						design and development should respond to the user’s behavior and
-						environment based on screen size, platform and orientation. This
-						would eliminate the need for a different design and development
-						phase for each new gadget on the market.</p>
+					<h4 class="reason">2. 책임소재</h4>
+					<p>
+						문제가 발생하면 누군가 책임지는 내용이 있습니다.<br>
+						문제가 발생하면 누군가 책임지는 내용이 있습니다.<br>
+						문제가 발생하면 누군가 책임지는 내용이 있습니다.<br>
+						문제가 발생하면 누군가 책임지는 내용이 있습니다.<br>
+						문제가 발생하면 누군가 책임지는 내용이 있습니다.<br>
+					</p>
 
-					<hr class="invisible">
-
-					<div class="form-group">
-						<a href="lgonPage.do"
-							class="btn btn-default btn-quirk btn-stroke btn-stroke-thin btn-block btn-sign">Already
-							a member? Sign In Now!</a>
-					</div>
 				</div>
 				<!-- sign-sidebar -->
 			</div>
@@ -120,7 +95,4 @@
 	  $("select.form-control").select2({ minimumResultsForSearch: Infinity });
 	
 	});
-</script>
-
-</body>
-</html>
+	</script>

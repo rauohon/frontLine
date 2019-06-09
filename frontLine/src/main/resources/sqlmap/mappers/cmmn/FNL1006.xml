@@ -4,7 +4,7 @@
 <mapper namespace="cmmn.FNL1006">
 
 	<!--														-->
-	<!-- 업무내용 : 세션 저장 정보 조회							-->
+	<!-- 업무내용 : 공통코드 조회							-->
 	<!--														-->
 	<select id="selectCmmnCd" parameterType="fnlMap" resultType="hashmap">
 		/* SQL_id = cmmn.FNL1006.selectCmmnCd */

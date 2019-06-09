@@ -45,8 +45,9 @@ public class ShopMainController {
 	@GetMapping(value = "/shopHome.do")
 	public ModelAndView shopHome (FnlMap fnlMap) throws Exception {
 		log.info(">>>>>>>>>>shopHome > controller");
-		mav.setViewName("shop/shopHome.tiles");
-		mav.addObject("pageName", fnlMap.getString("pageName"));
+		
+		mav = shopMainService.entrance(0, fnlMap);
+		
 		return mav;
 	}
 	

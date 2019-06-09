@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="/resources/lib/jquery-toggles/toggles-full.css">
 <link rel="stylesheet" href="/resources/lib/morrisjs/morris.css">
 
+<link rel="stylesheet" type="text/css" href="/resources/lib/jquery-ui/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/quirk.css">
 
 <script src="/resources/lib/modernizr/modernizr.js"></script>
@@ -24,6 +25,7 @@
 <script type="text/javascript" src="/resources/js/cmmn/cmmn_util.js"></script>
 <script type="text/javascript" src="/resources/js/cmmn/popup.js"></script>
 <script type="text/javascript" src="/resources/js/cmmn/transaction.js"></script>
+<script type="text/javascript" src="/resources/js/cmmn/calculator.js"></script>
 
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -54,6 +56,9 @@
 				$("#frm").attr("action", "/game/gameHome.do");
 				$("#gameHome").addClass('active');
 				$("#frm").attr("method", "post");
+			} else if (pageName == "dungeon") {
+				$("#frm").attr("action", "/game/dungeonPage.do");
+				$("#gameHome").addClass('active');
 			}
 			$("#frm").submit();
 		}

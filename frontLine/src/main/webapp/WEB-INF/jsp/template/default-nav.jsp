@@ -4,7 +4,7 @@
   <div class="headerpanel">
 
     <div id="home" class="logopanel">
-      <h2><a onClick="javascript:void(0)">Web RPG</a></h2>
+      <h2><a onClick="javascript:void(0)">Front Line</a></h2>
     </div><!-- logopanel -->
 
     <div class="headerbar">
