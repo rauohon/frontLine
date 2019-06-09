@@ -30,14 +30,14 @@
 
 	<div class="panel signin">
 		<div class="panel-heading">
-			<h1>Quirk</h1>
+			<h1>Front Line</h1>
 			<h4 class="panel-title">Welcome! Please signin.</h4>
 		</div>
 		<div class="panel-body">
 			<button class="btn btn-primary btn-quirk btn-fb btn-block invisible">
 				Connect with Facebook
 			</button>
-			<div class="or">or</div>
+			<hr class="darken">
 			<form id='valid' action="lgon.do" method="post">
 				<div class="form-group mb10">
 					<div class="error"><span style="color : tomato;">${errorDetail }</span></div>
@@ -57,15 +57,15 @@
 					</div>
 				</div>
 				<div>
-					<a href="" class="forgot">Forgot password?</a>
+					<a href="" class="forgot"></a>
 				</div>
 				<div class="form-group">
 					<button class="btn btn-success btn-quirk btn-block">
-						Sign In
+						로그인
 					</button>
 					<a href="signUpPage.do"
 						class="btn btn-default btn-quirk btn-stroke btn-stroke-thin btn-block btn-sign">
-						Not	a member? Sign up now!
+						회원가입 하기
 					</a>
 				</div>
 			</form>

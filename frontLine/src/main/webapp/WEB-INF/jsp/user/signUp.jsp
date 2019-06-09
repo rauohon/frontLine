@@ -9,7 +9,7 @@
 			<div class="col-sm-5">
 				<div class="panel">
 					<div class="panel-heading">
-						<h1>Front-Line</h1>
+						<h1>Front Line</h1>
 						<h4 class="panel-title" style="color: gray;">회원가입 해요</h4>
 					</div>
 					<div class="panel-body">
